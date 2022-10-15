@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<QCARInfo>
+    <TargetSet version="36.0" toolVersion="v5.6.0-6-g4fb8708">
+        <ModelTarget name="flutecase_open" targetId="92632169d62a4f22baa87f1fc4c4dcd9" bbox="-0.088055 -0.030191 -0.176065 0.098280 0.032591 0.281731" version="13.0" toolVersion="v5.6.0-6-g4fb8708" trackingMode="scan" upVector="0.0 1.0 0.0" optimizeTrackingFor="default" realisticTextures="yes" />
+        <ModelTarget name="flutecase" targetId="01d43ded1c004d2c89f501730972983d" bbox="-0.023533 -0.030859 -0.214486 0.074071 0.032177 0.248456" version="13.0" toolVersion="v5.6.0-6-g4fb8708" trackingMode="scan" upVector="0.0 1.0 0.0" optimizeTrackingFor="default" realisticTextures="yes" />
+    </TargetSet>
+    <Assembly name="flutecase_open" assemblyId="d61a97310dca4dc1ba5e8bcfdb150e04">
+        <Part name="flutecase_open" translation="0 0 0" rotation="AD: 0 0 1 0" />
+        <EntryPoint name="(none)" trained="yes" />
+    </Assembly>
+    <Assembly name="flutecase" assemblyId="37e61f34319849f294c4b9a14ef690a7">
+        <Part name="flutecase" translation="0 0 0" rotation="AD: 0 0 1 0" />
+        <EntryPoint name="(none)" trained="yes" />
+    </Assembly>
+    <ModelTargetDatabase mtDBid="934f620963a248ca93a7194ed0f81274" name="flutecase_open" toolVersion="v5.6.0-6-g4fb8708" version="36.0">
+        <RecognitionResult assemblyId="d61a97310dca4dc1ba5e8bcfdb150e04" assemblyName="flutecase_open" entryPoint="GuideView_0000" />
+        <RecognitionResult assemblyId="37e61f34319849f294c4b9a14ef690a7" assemblyName="flutecase" entryPoint="GuideView_0000" />
+    </ModelTargetDatabase>
+</QCARInfo>

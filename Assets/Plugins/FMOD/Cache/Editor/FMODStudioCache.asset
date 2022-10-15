@@ -1,0 +1,277 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8193271116556255793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD Project/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638016521382728010
+  FileSizes:
+  - Name: Desktop
+    Value: 1056
+  Exists: 1
+--- !u!114 &-4934234873256644660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2D/Ghost2
+  m_EditorClassIdentifier: 
+  Path: event:/2D/Ghost2
+  Guid:
+    Data1: -364294412
+    Data2: 1216979330
+    Data3: 2004056753
+    Data4: -479194844
+  Banks:
+  - {fileID: 8974048903809167843}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2200
+--- !u!114 &-4803888868173489232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost1/PitchShifter_UpDown
+  m_EditorClassIdentifier: 
+  Name: PitchShifter_UpDown
+  StudioPath: 
+  Min: 1
+  Max: 7
+  Default: 4
+  ID:
+    data1: 3515410720
+    data2: 1946234344
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-2986562816528745904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost1/Flanger_LeftRight
+  m_EditorClassIdentifier: 
+  Name: Flanger_LeftRight
+  StudioPath: 
+  Min: 1
+  Max: 5
+  Default: 3
+  ID:
+    data1: 2673706548
+    data2: 119478103
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-2770222269109271553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3D/Ghost1
+  m_EditorClassIdentifier: 
+  Path: event:/3D/Ghost1
+  Guid:
+    Data1: 855756591
+    Data2: 1231722723
+    Data3: -767106386
+    Data4: -1071654679
+  Banks:
+  - {fileID: 8974048903809167843}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -2986562816528745904}
+  - {fileID: -4803888868173489232}
+  MinDistance: 0
+  MaxDistance: 4
+  Length: 6008
+--- !u!114 &-2289846910496880218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2D/Ghost1
+  m_EditorClassIdentifier: 
+  Path: event:/2D/Ghost1
+  Guid:
+    Data1: -1993132394
+    Data2: 1169971827
+    Data3: -1666196302
+    Data4: -1468373914
+  Banks:
+  - {fileID: 8974048903809167843}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
+--- !u!114 &-2159120217728677424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost2/PitchShifter_UpDown
+  m_EditorClassIdentifier: 
+  Name: PitchShifter_UpDown
+  StudioPath: 
+  Min: 1
+  Max: 7
+  Default: 4
+  ID:
+    data1: 3515410720
+    data2: 1946234344
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -8193271116556255793}
+  - {fileID: 8974048903809167843}
+  EditorEvents:
+  - {fileID: -2289846910496880218}
+  - {fileID: -4934234873256644660}
+  - {fileID: -2770222269109271553}
+  - {fileID: 2328439659786570543}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 8974048903809167843}
+  StringsBanks:
+  - {fileID: -8193271116556255793}
+  cacheTime: 638016521382728010
+  cacheVersion: 131592
+--- !u!114 &64535978337413089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost2/Flanger_LeftRight
+  m_EditorClassIdentifier: 
+  Name: Flanger_LeftRight
+  StudioPath: 
+  Min: 1
+  Max: 5
+  Default: 3
+  ID:
+    data1: 2673706548
+    data2: 119478103
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &2328439659786570543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3D/Ghost2
+  m_EditorClassIdentifier: 
+  Path: event:/3D/Ghost2
+  Guid:
+    Data1: -849888008
+    Data2: 1229693292
+    Data3: 314638730
+    Data4: -2116468348
+  Banks:
+  - {fileID: 8974048903809167843}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -2159120217728677424}
+  - {fileID: 64535978337413089}
+  MinDistance: 0
+  MaxDistance: 4
+  Length: 4519
+--- !u!114 &8974048903809167843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD Project/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638016521382716534
+  FileSizes:
+  - Name: Desktop
+    Value: 77536
+  Exists: 1
