@@ -8,6 +8,7 @@ public class Ghost : MonoBehaviour
     public float pitchScale;  // 1 ~ 7 사이
     public float flangerScale;  // 1 ~ 5 사이
     public Vector3 originalScale;
+    public Vector3 changedScale;
     public bool isPlaying = false;
     public bool initialized = false;
     private FMOD.Studio.EventInstance instance;
@@ -21,8 +22,6 @@ public class Ghost : MonoBehaviour
     private void Awake()
     {
         originalScale = transform.localScale;
-        //studioEventEmitter = transform.GetComponent<FMODUnity.StudioEventEmitter>();
-        //instance = studioEventEmitter.EventInstance;
     }
 
     // Start is called before the first frame update
@@ -34,12 +33,15 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
-        instance.setParameterByName("PitchShifter_UpDown", pitchScale);
-        instance.setParameterByName("Flanger_LeftRight", flangerScale);
+        if (initialized == true)
+        {
+            instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
+            instance.setParameterByName("PitchShifter_UpDown", pitchScale);
+            instance.setParameterByName("Flanger_LeftRight", flangerScale);
 
-        FMOD.Studio.PLAYBACK_STATE state;
-        instance.getPlaybackState(out state);
+            FMOD.Studio.PLAYBACK_STATE state;
+            instance.getPlaybackState(out state);
+        }
     }
 
     public void play()
@@ -53,4 +55,9 @@ public class Ghost : MonoBehaviour
         instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         isPlaying = false;
     }
+
+    //public void OnSelected()
+    //{
+        
+    //}
 }

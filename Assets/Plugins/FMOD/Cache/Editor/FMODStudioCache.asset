@@ -15,10 +15,136 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638016521382728010
+  lastModified: 638017301406459552
   FileSizes:
   - Name: Desktop
-    Value: 1056
+    Value: 1274
+  Exists: 1
+--- !u!114 &-8071985413722739627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Choir/Ghost5
+  m_EditorClassIdentifier: 
+  Path: event:/Choir/Ghost5
+  Guid:
+    Data1: -773792233
+    Data2: 1161655856
+    Data3: -1594388327
+    Data4: 2015190742
+  Banks:
+  - {fileID: 8974048903809167843}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3719414234599233730}
+  - {fileID: 487276700917372151}
+  - {fileID: 1626602693446682316}
+  MinDistance: 0
+  MaxDistance: 4
+  Length: 52047
+--- !u!114 &-6963433007189938400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost4/PitchShifter_UpDown
+  m_EditorClassIdentifier: 
+  Name: PitchShifter_UpDown
+  StudioPath: 
+  Min: 1
+  Max: 7
+  Default: 4
+  ID:
+    data1: 3515410720
+    data2: 1946234344
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-6210405577679773489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost4/Size
+  m_EditorClassIdentifier: 
+  Name: Size
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 2766283695
+    data2: 521236681
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-5357262765312928670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost2/Size
+  m_EditorClassIdentifier: 
+  Name: Size
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 2766283695
+    data2: 521236681
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-4962097590574401844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost2/PitchShifter_UpDown
+  m_EditorClassIdentifier: 
+  Name: PitchShifter_UpDown
+  StudioPath: 
+  Min: 1
+  Max: 7
+  Default: 4
+  ID:
+    data1: 3515410720
+    data2: 1946234344
+  Type: 1
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &-4934234873256644660
 MonoBehaviour:
@@ -67,6 +193,108 @@ MonoBehaviour:
   ID:
     data1: 3515410720
     data2: 1946234344
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-4664037294376019820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Choir/Ghost4
+  m_EditorClassIdentifier: 
+  Path: event:/Choir/Ghost4
+  Guid:
+    Data1: 1148858089
+    Data2: 1341766556
+    Data3: -261358687
+    Data4: -1391883765
+  Banks:
+  - {fileID: 8974048903809167843}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6963433007189938400}
+  - {fileID: -6210405577679773489}
+  - {fileID: -3906992182957956232}
+  MinDistance: 0
+  MaxDistance: 4
+  Length: 52000
+--- !u!114 &-3906992182957956232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost4/Flanger_LeftRight
+  m_EditorClassIdentifier: 
+  Name: Flanger_LeftRight
+  StudioPath: 
+  Min: 1
+  Max: 5
+  Default: 3
+  ID:
+    data1: 2673706548
+    data2: 119478103
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-3719414234599233730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost5/Flanger_LeftRight
+  m_EditorClassIdentifier: 
+  Name: Flanger_LeftRight
+  StudioPath: 
+  Min: 1
+  Max: 5
+  Default: 3
+  ID:
+    data1: 2673706548
+    data2: 119478103
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-3075503369271274359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost2/Flanger_LeftRight
+  m_EditorClassIdentifier: 
+  Name: Flanger_LeftRight
+  StudioPath: 
+  Min: 1
+  Max: 5
+  Default: 3
+  ID:
+    data1: 2673706548
+    data2: 119478103
   Type: 1
   IsGlobal: 0
   Labels: []
@@ -175,6 +403,60 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-662917191016931859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Choir/Ghost1
+  m_EditorClassIdentifier: 
+  Path: event:/Choir/Ghost1
+  Guid:
+    Data1: -1520552409
+    Data2: 1096111614
+    Data3: -761547344
+    Data4: -539190994
+  Banks:
+  - {fileID: 8974048903809167843}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 6260025456310128929}
+  - {fileID: 6632437646528874767}
+  - {fileID: 3152445644506436329}
+  MinDistance: 0
+  MaxDistance: 4
+  Length: 51989
+--- !u!114 &-8537768724193227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost3/Flanger_LeftRight
+  m_EditorClassIdentifier: 
+  Name: Flanger_LeftRight
+  StudioPath: 
+  Min: 1
+  Max: 5
+  Default: 3
+  ID:
+    data1: 2673706548
+    data2: 119478103
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,12 +477,17 @@ MonoBehaviour:
   - {fileID: -4934234873256644660}
   - {fileID: -2770222269109271553}
   - {fileID: 2328439659786570543}
+  - {fileID: -8071985413722739627}
+  - {fileID: 3961667981053980957}
+  - {fileID: -662917191016931859}
+  - {fileID: 2397969243864398499}
+  - {fileID: -4664037294376019820}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8974048903809167843}
   StringsBanks:
   - {fileID: -8193271116556255793}
-  cacheTime: 638016521382728010
+  cacheTime: 638017301406459552
   cacheVersion: 131592
 --- !u!114 &64535978337413089
 MonoBehaviour:
@@ -223,6 +510,78 @@ MonoBehaviour:
     data1: 2673706548
     data2: 119478103
   Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &487276700917372151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost5/Size
+  m_EditorClassIdentifier: 
+  Name: Size
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 2766283695
+    data2: 521236681
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &1626602693446682316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost5/PitchShifter_UpDown
+  m_EditorClassIdentifier: 
+  Name: PitchShifter_UpDown
+  StudioPath: 
+  Min: 1
+  Max: 7
+  Default: 4
+  ID:
+    data1: 3515410720
+    data2: 1946234344
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &2192704171498070520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost3/Size
+  m_EditorClassIdentifier: 
+  Name: Size
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 2766283695
+    data2: 521236681
+  Type: 0
   IsGlobal: 0
   Labels: []
   Exists: 1
@@ -255,6 +614,162 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 4
   Length: 4519
+--- !u!114 &2397969243864398499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Choir/Ghost3
+  m_EditorClassIdentifier: 
+  Path: event:/Choir/Ghost3
+  Guid:
+    Data1: -729863971
+    Data2: 1240790654
+    Data3: 772168340
+    Data4: -1382355351
+  Banks:
+  - {fileID: 8974048903809167843}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 3350485648459693489}
+  - {fileID: 2192704171498070520}
+  - {fileID: -8537768724193227}
+  MinDistance: 0
+  MaxDistance: 4
+  Length: 52000
+--- !u!114 &3152445644506436329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost1/PitchShifter_UpDown
+  m_EditorClassIdentifier: 
+  Name: PitchShifter_UpDown
+  StudioPath: 
+  Min: 1
+  Max: 7
+  Default: 4
+  ID:
+    data1: 3515410720
+    data2: 1946234344
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &3350485648459693489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost3/PitchShifter_UpDown
+  m_EditorClassIdentifier: 
+  Name: PitchShifter_UpDown
+  StudioPath: 
+  Min: 1
+  Max: 7
+  Default: 4
+  ID:
+    data1: 3515410720
+    data2: 1946234344
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &3961667981053980957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Choir/Ghost2
+  m_EditorClassIdentifier: 
+  Path: event:/Choir/Ghost2
+  Guid:
+    Data1: -473937372
+    Data2: 1220320894
+    Data3: 145754525
+    Data4: 748107043
+  Banks:
+  - {fileID: 8974048903809167843}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3075503369271274359}
+  - {fileID: -5357262765312928670}
+  - {fileID: -4962097590574401844}
+  MinDistance: 0
+  MaxDistance: 4
+  Length: 52006
+--- !u!114 &6260025456310128929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost1/Flanger_LeftRight
+  m_EditorClassIdentifier: 
+  Name: Flanger_LeftRight
+  StudioPath: 
+  Min: 1
+  Max: 5
+  Default: 3
+  ID:
+    data1: 2673706548
+    data2: 119478103
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &6632437646528874767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ghost1/Size
+  m_EditorClassIdentifier: 
+  Name: Size
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 2766283695
+    data2: 521236681
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &8974048903809167843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,8 +785,8 @@ MonoBehaviour:
   Path: FMOD Project/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638016521382716534
+  lastModified: 638017301406439598
   FileSizes:
   - Name: Desktop
-    Value: 77536
+    Value: 1055904
   Exists: 1

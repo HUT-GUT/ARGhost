@@ -17,8 +17,8 @@ public class SceneController : MonoBehaviour
         
     }
 
-    public void MoveOnToGame1()
+    public void MoveOnToGame(int gameNumber)
     {
-        SceneManager.LoadScene("Game 1");
+        SceneManager.LoadScene($"Game {gameNumber}");
     }
 }

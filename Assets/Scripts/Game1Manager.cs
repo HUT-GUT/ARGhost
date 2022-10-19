@@ -80,15 +80,14 @@ public class Game1Manager : MonoBehaviour
             // Check Reset 
             else if (currentGhost == null && currentIndex < GhostPrefabs.Count)
             {
-                GuideText.text = $"currentIndex: {currentIndex}!\n";
                 StartGhostFinding(currentIndex);
             }
-            else if (currentGhost != null)
+            else if (currentGhost != null && Input.touchCount > 0)
             {
                 // Touch processing
                 Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
                 RaycastHit hit;
-                if (Input.touchCount > 0 && Physics.Raycast(ray, out hit) && hit.transform.gameObject == currentGhost)
+                if (Physics.Raycast(ray, out hit) && hit.transform.gameObject == currentGhost)
                 {
                     GuideText.text = $"{hit.transform.name}을 찾았습니다!\n유물함에 유령을 잡아넣어보세요.\n";
                     if (Input.touches[0].phase == TouchPhase.Began)

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{67ef0dba-da4e-4fce-a3f3-b3867d0c1936}">
+		<property name="assetPath">
+			<value>Goose_Alto.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>50.006802721088434</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3d4ca191-728f-40ee-a6ff-ef1f988b09b9}</destination>
+		</relationship>
+	</object>
+</objects>
