@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Game3Manager : MonoBehaviour
 {
-    public List<GameObject> ghostPrefabs;
     public TMPro.TextMeshProUGUI GuideText;
-    public GameObject CongratsScreen, GameScreen, SliderPanel;
+    public GameObject CongratsScreen, GameScreen, MissionClearScreen, EndingPanel, SliderPanel;
     public GameObject Ghost1, Ghost2, Ghost3, Ghost4, Ghost5;
     public Slider PitchSlider, FlangerSlider;
     public enum UserState
@@ -22,7 +22,6 @@ public class Game3Manager : MonoBehaviour
     private Ghost ghost = null;
     private List<Ghost> ghosts = new List<Ghost>();
     private List<GameObject> ghostObjects;
-    private bool isPlaying = false;
 
     private void Awake()
     {
@@ -52,7 +51,10 @@ public class Game3Manager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                GuideText.text = $"Touched {hit.transform.name}\n";
+                if (!SliderPanel.activeSelf)
+                {
+                    SliderPanel.SetActive(true);
+                }
                 currentGhost = hit.transform.gameObject;
                 ghost = currentGhost.GetComponent<Ghost>();
                 PitchSlider.value = ghost.pitchScale;
@@ -63,29 +65,17 @@ public class Game3Manager : MonoBehaviour
                 {
                     if (ghostObject.name == currentGhost.name)
                     {
-                        ghostObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                        ghostObject.GetComponent<Ghost>().select();
                     }
                     else
                     {
-                        ghostObject.transform.localScale = new Vector3(1f, 1f, 1f);
-                        Renderer[] renderers = hit.transform.GetComponentsInChildren<Renderer>();
-                        foreach (Renderer renderer in renderers)
-                        {
-                            foreach (Material material in renderer.materials)
-                            {
-                                Color color = material.color;
-                                material.color = new Color(color.r, color.g, color.b, 0.3f);
-                            }
-                        }
+                        ghostObject.GetComponent<Ghost>().deselect();
                     }
                 }
-                // selection 표시
-                //currentGhost.transform.GetChild(1).gameObject.SetActive(true);
             }
-            else
+            else if (EventSystem.current.currentSelectedGameObject == null)
             {
-                //GuideText.text = $"Touched outside objects\n";
-                //ResetSelection();
+                ResetSelection();
             }
         }
     }
@@ -94,16 +84,7 @@ public class Game3Manager : MonoBehaviour
     {
         foreach (GameObject ghostObject in ghostObjects)
         {
-            ghostObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            Renderer[] renderers = ghostObject.transform.GetComponentsInChildren<Renderer>();
-            foreach (Renderer renderer in renderers)
-            {
-                foreach (Material material in renderer.materials)
-                {
-                    Color color = material.color;
-                    material.color = new Color(color.r, color.g, color.b, 1f);
-                }
-            }
+            ghostObject.GetComponent<Ghost>().select();
         }
         currentGhost = null;
         ghost = null;
@@ -115,43 +96,54 @@ public class Game3Manager : MonoBehaviour
         GameScreen.SetActive(true);
     }
 
+    public void FinishGame()
+    {
+        GuideText.text = $"당신의 소리 유물이 완성되었습니다!";
+        GameScreen.SetActive(false);
+        MissionClearScreen.SetActive(true);
+        foreach (Ghost ghost in ghosts)
+        {
+            ghost.stop();
+        }
+    }
+
+    public void DisplayEnding()
+    {
+        MissionClearScreen.SetActive(false);
+        EndingPanel.SetActive(true);
+    }
+
     public void PositioningCompleted()
     {
-        GuideText.text = $"두 손가락으로 유령들의 방향을 회전시킬 수 있습니다. \n";
+        GuideText.text = $"두 손가락으로 유령들의 방향을 회전시킬 수 있습니다.\n 각 유령을 선택하고 슬라이드를 조정하여 소리와 모양을 바꿔보세요.";
         for (int i = 0; i < ghostObjects.Count; i++)
         {
             GameObject ghostObject = ghostObjects[i];
-            GuideText.text += $"ghostObject.name: {ghostObject.name}\n";
             var fmodInstance = FMODUnity.RuntimeManager.CreateInstance($"event:/Choir/Ghost{i + 1}");
-            GuideText.text += $"fmodInstance: {fmodInstance}\n";
             ghostObject.GetComponent<Ghost>().Init(fmodInstance);
         }
         foreach (Ghost ghost in ghosts)
         {
             ghost.play();
         }
-        SliderPanel.SetActive(true);
-        isPlaying = true;
         currentState = UserState.Playing;
     }
 
     public void onPitchScaleChange()
     {
         float pitchValue = PitchSlider.value;
-        GuideText.text = $"new pitchValue: {pitchValue}, original scale: {ghost.originalScale}\n";
         float sizeRatio = (pitchValue * 1 / 6) + 0.5f;
         ghost.pitchScale = pitchValue;
-        Vector3 newSize = new Vector3(ghost.originalScale.x, ghost.originalScale.y * sizeRatio, ghost.transform.localScale.z);
-        currentGhost.transform.localScale = newSize;
+        Vector3 newSize = new Vector3(ghost.changedScale.x, ghost.originalScale.y * sizeRatio, ghost.originalScale.z);
+        ghost.changeScale(newSize);
     }
 
     public void onFlangerScaleChange()
     {
         float flangerValue = FlangerSlider.value;
-        GuideText.text = $"new flangerValue: {flangerValue}\n";
         float sizeRatio = (flangerValue * 1 / 8) + 0.5f;
         ghost.flangerScale = flangerValue;
-        Vector3 newSize = new Vector3(ghost.originalScale.x * sizeRatio, ghost.transform.localScale.y, ghost.originalScale.z);
-        currentGhost.transform.localScale = newSize;
+        Vector3 newSize = new Vector3(ghost.originalScale.x * sizeRatio, ghost.changedScale.y, ghost.originalScale.z);
+        ghost.changeScale(newSize);
     }
 }

@@ -9,6 +9,7 @@ public class Ghost : MonoBehaviour
     public float flangerScale;  // 1 ~ 5 사이
     public Vector3 originalScale;
     public Vector3 changedScale;
+    public float volumeSize = 0.5f;
     public bool isPlaying = false;
     public bool initialized = false;
     private FMOD.Studio.EventInstance instance;
@@ -22,6 +23,7 @@ public class Ghost : MonoBehaviour
     private void Awake()
     {
         originalScale = transform.localScale;
+        changedScale = originalScale;
     }
 
     // Start is called before the first frame update
@@ -38,7 +40,7 @@ public class Ghost : MonoBehaviour
             instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
             instance.setParameterByName("PitchShifter_UpDown", pitchScale);
             instance.setParameterByName("Flanger_LeftRight", flangerScale);
-
+            instance.setParameterByName("Size", volumeSize);
             FMOD.Studio.PLAYBACK_STATE state;
             instance.getPlaybackState(out state);
         }
@@ -56,6 +58,55 @@ public class Ghost : MonoBehaviour
         isPlaying = false;
     }
 
+    public void increaseVolume()
+    {
+        volumeSize = 1.0f;
+    }
+
+    public void decreaseVolume()
+    {
+        volumeSize = 0.3f;
+    }
+
+    public void changeScale(Vector3 newScale)
+    {
+        transform.localScale = newScale;
+        changedScale = newScale;
+    }
+
+    public void select()
+    {
+        foreach (Transform child in transform.GetChild(0))
+        {
+            Renderer[] renderers = child.GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers)
+            {
+                foreach (Material material in renderer.materials)
+                {
+                    Color color = material.color;
+                    material.color = new Color(color.r, color.g, color.b, 1f);
+                }
+            }
+        }
+        increaseVolume();
+    }
+
+    public void deselect()
+    {
+        foreach (Transform child in transform.GetChild(0))
+        {
+            Renderer[] renderers = child.GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers)
+            {
+                foreach (Material material in renderer.materials)
+                {
+                    Color color = material.color;
+                    material.color = new Color(color.r, color.g, color.b, 0.3f);
+                }
+            }
+        }
+        decreaseVolume();
+    }
     //public void OnSelected()
     //{
         

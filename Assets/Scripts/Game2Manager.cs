@@ -208,8 +208,8 @@ public class Game2Manager : MonoBehaviour
         float pitchValue = PitchSliders[ghostIndex].value;
         float sizeRatio = (pitchValue * 1 / 6) + 0.5f;
         ghost.pitchScale = pitchValue;
-        Vector3 newSize = new Vector3(ghost.originalScale.x, ghost.originalScale.y * sizeRatio, ghost.transform.localScale.z);
-        currentGhost.transform.localScale = newSize;
+        Vector3 newSize = new Vector3(ghost.originalScale.x, ghost.originalScale.y * sizeRatio, ghost.changedScale.z);
+        ghost.changeScale(newSize);
     }
 
     public void onFlangerScaleChange(int ghostIndex)
@@ -217,8 +217,8 @@ public class Game2Manager : MonoBehaviour
         float flangerValue = FlangerSliders[ghostIndex].value;
         float sizeRatio = (flangerValue * 1 / 8) + 0.5f;
         ghost.flangerScale = flangerValue;
-        Vector3 newSize = new Vector3(ghost.originalScale.x, ghost.transform.localScale.y, ghost.originalScale.z * sizeRatio);
-        currentGhost.transform.localScale = newSize;
+        Vector3 newSize = new Vector3(ghost.originalScale.x, ghost.changedScale.y, ghost.originalScale.z * sizeRatio);
+        ghost.changeScale(newSize);
     }
 
     public void GameStart()

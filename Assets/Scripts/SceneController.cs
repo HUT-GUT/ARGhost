@@ -21,4 +21,9 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene($"Game {gameNumber}");
     }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Opening");
+    }
 }
