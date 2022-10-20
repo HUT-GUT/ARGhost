@@ -89,6 +89,10 @@ public class Game2Manager : MonoBehaviour
             // Check Mission Clear
             if (isRestoredGhosts.TrueForAll(x => x == true))
             {
+                if (ghost.isPlaying)
+                {
+                    ghost.stop();
+                }
                 MissionClear();
             }
             // Check Reset
@@ -102,16 +106,16 @@ public class Game2Manager : MonoBehaviour
                 {
                     // Restore Success!!
                     GuideText.text = $"{currentIndex+1}번째 유령의 복원이 무사히 완료되었습니다! \n";
-                    isRestoredGhosts[currentIndex] = true;
                     ghost.stop();
+                    isRestoredGhosts[currentIndex] = true;
                     ResetForNextRound();
                 }
                 else if (currentIndex == 1 && ghost.pitchScale == 6 && ghost.flangerScale == 5)
                 {
                     // Restore Success!!
                     GuideText.text = $"{currentIndex + 1}번째 유령의 복원도 무사히 완료되었습니다! \n";
-                    isRestoredGhosts[currentIndex] = true;
                     ghost.stop();
+                    isRestoredGhosts[currentIndex] = true;
                     ResetForNextRound();
                 }
             }

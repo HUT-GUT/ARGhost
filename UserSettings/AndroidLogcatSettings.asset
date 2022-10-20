@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R54NC0380DW",
         "name": "com.example.ARGhost",
-        "processId": 3397,
+        "processId": 16816,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -54,6 +54,54 @@
             "deviceId": "R54NC0380DW",
             "name": "com.example.ARGhost",
             "processId": 3397,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 4106,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 4537,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 13369,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 14234,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 14975,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 15682,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 16232,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 16816,
             "exited": false
         }
     ],
