@@ -22,8 +22,18 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene($"Game {gameNumber}");
     }
 
+    public void MoveOnToPrologue()
+    {
+        SceneManager.LoadScene($"Prologue");
+    }
+
     public void RestartGame()
     {
         SceneManager.LoadScene("Opening");
+    }
+
+    public void RestartCurrentGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

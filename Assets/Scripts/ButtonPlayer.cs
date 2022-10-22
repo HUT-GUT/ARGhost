@@ -7,6 +7,7 @@ public class ButtonPlayer : MonoBehaviour
 {
     private FMODUnity.StudioEventEmitter studioEventEmitter;
     private Button button;
+    private bool pressed = false;
     private bool isPlaying = false;
     private Game2Manager game2Manager;
 
@@ -28,11 +29,17 @@ public class ButtonPlayer : MonoBehaviour
     {
         isPlaying = studioEventEmitter.IsPlaying();
         button.interactable = !isPlaying;
+        if (pressed && !isPlaying)
+        {
+            game2Manager.startPlaying();
+            pressed = false;
+        }
     }
 
     public void play()
     {
         isPlaying = true;
+        pressed = true;
         game2Manager.stopPlaying();
         studioEventEmitter.Play();
 

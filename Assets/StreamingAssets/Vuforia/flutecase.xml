@@ -3,7 +3,7 @@
     <Tracking>
         <ModelTarget name="flutecase" trackingMode="scan" motionHint="adaptive" upVector="0.0 1.0 0.0" optimizeTrackingFor="default"></ModelTarget>
     </Tracking>
-    <Assembly name="flutecase" assemblyId="aa3fe21ed6144c2cac30f1f58fdbdf7b">
+    <Assembly name="flutecase" assemblyId="6d7fe8f87ddb4b8a8969393a911868b5">
         <Part name="flutecase" translation="0 0 0" rotation="AD: 0 0 1 0"></Part>
         <EntryPoint name="(none)" trained="yes"></EntryPoint>
     </Assembly>

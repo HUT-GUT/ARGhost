@@ -41,12 +41,16 @@ public class Ghost : MonoBehaviour
             instance.setParameterByName("PitchShifter_UpDown", pitchScale);
             instance.setParameterByName("Flanger_LeftRight", flangerScale);
             instance.setParameterByName("Size", volumeSize);
-            FMOD.Studio.PLAYBACK_STATE state;
-            instance.getPlaybackState(out state);
         }
     }
 
     public void play()
+    {
+        instance.start();
+        isPlaying = true;
+    }
+
+    public void playOnce()
     {
         instance.start();
         isPlaying = true;
@@ -101,14 +105,26 @@ public class Ghost : MonoBehaviour
                 foreach (Material material in renderer.materials)
                 {
                     Color color = material.color;
+                    material.color = new Color(color.r, color.g, color.b, 0.1f);
+                }
+            }
+        }
+    }
+
+    public void disable()
+    {
+        foreach (Transform child in transform.GetChild(0))
+        {
+            Renderer[] renderers = child.GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers)
+            {
+                foreach (Material material in renderer.materials)
+                {
+                    Color color = material.color;
                     material.color = new Color(color.r, color.g, color.b, 0.3f);
                 }
             }
         }
         decreaseVolume();
     }
-    //public void OnSelected()
-    //{
-        
-    //}
 }

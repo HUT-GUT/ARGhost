@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class Game3Manager : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI GuideText;
-    public GameObject CongratsScreen, GameScreen, MissionClearScreen, EndingPanel, SliderPanel;
+    public GameObject CongratsScreen, GameScreen, MissionClearScreen, EndingScreen;
+    public GameObject SlidersPanel, FinishButtonPanel;
     public GameObject Ghost1, Ghost2, Ghost3, Ghost4, Ghost5;
     public Slider PitchSlider, FlangerSlider;
     public enum UserState
@@ -22,6 +23,10 @@ public class Game3Manager : MonoBehaviour
     private Ghost ghost = null;
     private List<Ghost> ghosts = new List<Ghost>();
     private List<GameObject> ghostObjects;
+    private List<bool> isManipulatedGhosts = new List<bool>
+    {
+        false, false, false, false, false
+    };
 
     private void Awake()
     {
@@ -44,6 +49,11 @@ public class Game3Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check Mission Clear
+        if (isManipulatedGhosts.TrueForAll(x => x == true))
+        {
+            FinishButtonPanel.SetActive(true);
+        }
         // Touch processing
         if (Input.touchCount > 0 && currentState == UserState.Playing)
         {
@@ -51,11 +61,13 @@ public class Game3Manager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (!SliderPanel.activeSelf)
+                if (!SlidersPanel.activeSelf)
                 {
-                    SliderPanel.SetActive(true);
+                    SlidersPanel.SetActive(true);
                 }
-                currentGhost = hit.transform.gameObject;
+                currentGhost = hit.transform.gameObject;                
+                string currentIndex = currentGhost.name.Substring(5);
+                isManipulatedGhosts[int.Parse(currentIndex) - 1] = true;
                 ghost = currentGhost.GetComponent<Ghost>();
                 PitchSlider.value = ghost.pitchScale;
                 FlangerSlider.value = ghost.flangerScale;
@@ -69,7 +81,7 @@ public class Game3Manager : MonoBehaviour
                     }
                     else
                     {
-                        ghostObject.GetComponent<Ghost>().deselect();
+                        ghostObject.GetComponent<Ghost>().disable();
                     }
                 }
             }
@@ -90,9 +102,8 @@ public class Game3Manager : MonoBehaviour
         ghost = null;
     }
 
-    public void MoveOnToGameScreen()
+    public void DisplayFinish()
     {
-        CongratsScreen.SetActive(false);
         GameScreen.SetActive(true);
     }
 
@@ -101,16 +112,20 @@ public class Game3Manager : MonoBehaviour
         GuideText.text = $"당신의 소리 유물이 완성되었습니다!";
         GameScreen.SetActive(false);
         MissionClearScreen.SetActive(true);
-        foreach (Ghost ghost in ghosts)
-        {
-            ghost.stop();
-        }
+        stopSinging();
+        finalSong();
     }
 
     public void DisplayEnding()
     {
+        stopSinging();
         MissionClearScreen.SetActive(false);
-        EndingPanel.SetActive(true);
+        EndingScreen.SetActive(true);
+    }
+
+    public void DisplayPositioningGuide()
+    {
+        GuideText.text = "나만의 유물함을 탭하여 소리 유물들을 불러오세요.";
     }
 
     public void PositioningCompleted()
@@ -122,10 +137,7 @@ public class Game3Manager : MonoBehaviour
             var fmodInstance = FMODUnity.RuntimeManager.CreateInstance($"event:/Choir/Ghost{i + 1}");
             ghostObject.GetComponent<Ghost>().Init(fmodInstance);
         }
-        foreach (Ghost ghost in ghosts)
-        {
-            ghost.play();
-        }
+        startSinging();
         currentState = UserState.Playing;
     }
 
@@ -145,5 +157,29 @@ public class Game3Manager : MonoBehaviour
         ghost.flangerScale = flangerValue;
         Vector3 newSize = new Vector3(ghost.originalScale.x * sizeRatio, ghost.changedScale.y, ghost.originalScale.z);
         ghost.changeScale(newSize);
+    }
+
+    void startSinging()
+    {
+        foreach (Ghost ghost in ghosts)
+        {
+            ghost.play();
+        }
+    }
+
+    public void finalSong()
+    {
+        foreach (Ghost ghost in ghosts)
+        {
+            ghost.playOnce();
+        }
+    }
+
+    public void stopSinging()
+    {
+        foreach (Ghost ghost in ghosts)
+        {
+            ghost.stop();
+        }
     }
 }

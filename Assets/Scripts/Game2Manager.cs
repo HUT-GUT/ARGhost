@@ -1,60 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class Game2Manager : MonoBehaviour
 {
-    public TMPro.TextMeshProUGUI GuideText, RemainingTimeDisplay;
-    public GameObject TimerPanel, Ghost1Panel, Ghost2Panel, GameScreen, GameOverScreen, GameSuccessScreen, HintsPanel;
-    public GameObject Ghost1, Ghost2;
-    public Slider Ghost1PitchSlider, Ghost1FlangerSlider, Ghost2PitchSlider, Ghost2FlangerSlider;
-    public enum UserState
+    public TMPro.TextMeshProUGUI GuideText;
+    public Slider RemainingTimeSlider;
+    public GameObject TimerPanel, SlidersPanel;
+    public GameObject GameScreen, GameOverScreen, GameSuccessScreen;
+    public GameObject Ghost1, Ghost2, AudioHint1, AudioHint2;
+    public Slider PitchSlider, FlangerSlider;
+
+    // private variables
+    private enum UserState
     {
         Ready,
         Playing,
         Success,
         GameOver
     }
-    public UserState currentState = UserState.Ready;
-
-    // private variables
+    private UserState currentState = UserState.Ready;
     private List<bool> isRestoredGhosts = new List<bool>
     {
         false, false
-    };
-    private List<string> ghostNames = new List<string>
-    {
-        "Ghost1_Game2", "Ghost2_Game2"
     };
     private int currentIndex = 0;
     private GameObject currentGhost = null;
     private Ghost ghost = null;
     private float timeRemaining = 60.0f;
-    private List<GameObject> ghostPanels;
     private List<Slider> PitchSliders, FlangerSliders;
     private List<GameObject> Ghosts;
+    private List<GameObject> audioHints;
+    private SceneController sceneController;
 
     private void Awake()
     {
-        ghostPanels = new List<GameObject>
-        {
-            Ghost1Panel, Ghost2Panel
-        };
-        PitchSliders = new List<Slider>
-        {
-            Ghost1PitchSlider, Ghost2PitchSlider
-        };
-        FlangerSliders = new List<Slider>
-        {
-            Ghost1FlangerSlider, Ghost2FlangerSlider
-        };
         Ghosts = new List<GameObject>
         {
             Ghost1, Ghost2
         };
+        audioHints = new List<GameObject>
+        {
+            AudioHint1, AudioHint2
+        };
+        sceneController = FindObjectOfType<SceneController>();
     }
 
     // Start is called before the first frame update
@@ -71,11 +62,9 @@ public class Game2Manager : MonoBehaviour
         {
             if (currentState != UserState.GameOver)
             {
-                currentGhost.GetComponent<Ghost>().stop();
+                ghost.stop();
                 currentState = UserState.GameOver;
                 TimerPanel.SetActive(false);
-                // option
-                GuideText.text = "Changed state to GameOver!";
                 GameScreen.SetActive(false);
                 GameOverScreen.SetActive(true);
             }
@@ -84,19 +73,15 @@ public class Game2Manager : MonoBehaviour
         {
             // ~~~ Playing ~~~
             timeRemaining -= Time.deltaTime;
-            DisplayTime(timeRemaining, RemainingTimeDisplay);
+            DisplayTime(timeRemaining, RemainingTimeSlider);
 
             // Check Mission Clear
             if (isRestoredGhosts.TrueForAll(x => x == true))
             {
-                if (ghost.isPlaying)
-                {
-                    ghost.stop();
-                }
                 MissionClear();
             }
             // Check Reset
-            else if (currentGhost == null && currentIndex < ghostNames.Count)
+            else if (currentGhost == null && currentIndex < Ghosts.Count)
             {
                 StartGhostRestoring(currentIndex);
             }
@@ -127,58 +112,50 @@ public class Game2Manager : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    GuideText.text = $"슬라이더를 움직여 유령의 모양을 바꿔서 원래 소리대로 맞춰보세요.\n";
-                    if (currentGhost == null)
+                    ghost.select();
+                    if (!SlidersPanel.activeSelf)
                     {
-                        currentGhost = hit.transform.gameObject;
-                        var fmodInstance = FMODUnity.RuntimeManager.CreateInstance($"event:/3D/Ghost{currentIndex+1}");
-                        ghost = currentGhost.GetComponent<Ghost>();
-                        ghost.Init(fmodInstance);
+                        SlidersPanel.SetActive(true);
                     }
+                    GuideText.text = $"슬라이더를 움직여 유령의 모양을 바꿔서 원래 소리대로 맞춰보세요.\n";
 
                     if (!ghost.isPlaying)
                     {
                         ghost.play();
                     }
-                    // selection 표시
-                    currentGhost.transform.GetChild(1).gameObject.SetActive(true);
                 }
             }
         }
     }
 
-    //IEnumerator PlayHint(int ghostIndex)
-    //{
-    //    ButtonPlayer buttonPlayer = HintsPanel.transform.Find($"AudioHint{currentIndex + 1}").transform.GetComponent<ButtonPlayer>();
-    //    buttonPlayer.play();
-    //    yield return new WaitForSeconds(3);
-
-    //    currentState = UserState.Playing;
-    //    TimerPanel.SetActive(true);
-    //    StartGhostRestoring(ghostIndex);
-    //}
-
     void StartGhostRestoring(int ghostIndex)
     {
-        ghostPanels[ghostIndex].SetActive(true);
-        Ghosts[ghostIndex].SetActive(true);
+        audioHints[ghostIndex].SetActive(true);
+        currentGhost = Ghosts[ghostIndex];
+        var fmodInstance = FMODUnity.RuntimeManager.CreateInstance($"event:/3D/Ghost{currentIndex + 1}");
+        ghost = currentGhost.GetComponent<Ghost>();
+        ghost.Init(fmodInstance);
+        currentGhost.SetActive(true);
+        ghost.disable();
+        PitchSlider.value = ghost.pitchScale;
+        FlangerSlider.value = ghost.flangerScale;
         GuideText.text = $"{ghostIndex + 1}번째 유령을 탭하여 소리를 들어보세요.\n";
     }
 
-    void DisplayTime(float timeToDisplay, TMPro.TextMeshProUGUI displayText)
+    void DisplayTime(float timeToDisplay, Slider RemainingTimeSlider)
     {
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        displayText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        float seconds = Mathf.Floor(timeToDisplay);
+        RemainingTimeSlider.value = seconds;
     }
     
 
     void ResetForNextRound()
     {
-        ghostPanels[currentIndex].SetActive(false);
-        currentGhost.transform.GetChild(1).gameObject.SetActive(false);
+        audioHints[currentIndex].SetActive(false);
         currentGhost = null;
+        ghost = null;
         currentIndex++;
+        SlidersPanel.SetActive(false);
     }
 
     void MissionClear()
@@ -194,7 +171,7 @@ public class Game2Manager : MonoBehaviour
         if (currentGhost != null && ghost.isPlaying == false)
         {
             ghost.play();
-            currentGhost.transform.GetChild(1).gameObject.SetActive(true);
+            ghost.select();
         }
     }
 
@@ -203,41 +180,31 @@ public class Game2Manager : MonoBehaviour
         if (currentGhost != null && ghost.isPlaying == true)
         {
             ghost.stop();
-            currentGhost.transform.GetChild(1).gameObject.SetActive(false);
+            ghost.disable();
         }
     }
 
-    public void onPitchScaleChange(int ghostIndex)
+    public void onPitchScaleChange()
     {
-        float pitchValue = PitchSliders[ghostIndex].value;
+        float pitchValue = PitchSlider.value;
         float sizeRatio = (pitchValue * 1 / 6) + 0.5f;
         ghost.pitchScale = pitchValue;
-        Vector3 newSize = new Vector3(ghost.originalScale.x, ghost.originalScale.y * sizeRatio, ghost.changedScale.z);
+        Vector3 newSize = new Vector3(ghost.changedScale.x, ghost.originalScale.y * sizeRatio, ghost.originalScale.z);
         ghost.changeScale(newSize);
     }
 
-    public void onFlangerScaleChange(int ghostIndex)
+    public void onFlangerScaleChange()
     {
-        float flangerValue = FlangerSliders[ghostIndex].value;
+        float flangerValue = FlangerSlider.value;
         float sizeRatio = (flangerValue * 1 / 8) + 0.5f;
         ghost.flangerScale = flangerValue;
-        Vector3 newSize = new Vector3(ghost.originalScale.x, ghost.changedScale.y, ghost.originalScale.z * sizeRatio);
+        Vector3 newSize = new Vector3(ghost.originalScale.x * sizeRatio, ghost.changedScale.y, ghost.originalScale.z);
         ghost.changeScale(newSize);
     }
 
     public void GameStart()
-    {
+    {        
         TimerPanel.SetActive(true);
         currentState = UserState.Playing;
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void NextGame()
-    {
-        SceneManager.LoadScene("Game 3");
     }
 }
