@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
@@ -29,11 +30,14 @@ public class Game2Manager : MonoBehaviour
     private int currentIndex = 0;
     private GameObject currentGhost = null;
     private Ghost ghost = null;
-    private float timeRemaining = 60.0f;
+    private float defaultTimeRemaining = 91.0f;
+    private float timeRemaining;
     private List<Slider> PitchSliders, FlangerSliders;
     private List<GameObject> Ghosts;
     private List<GameObject> audioHints;
     private SceneController sceneController;
+    private float userPitchScale;
+    private float userFlangerScale;
 
     private void Awake()
     {
@@ -46,6 +50,7 @@ public class Game2Manager : MonoBehaviour
             AudioHint1, AudioHint2
         };
         sceneController = FindObjectOfType<SceneController>();
+        timeRemaining = defaultTimeRemaining;
     }
 
     // Start is called before the first frame update
@@ -71,9 +76,12 @@ public class Game2Manager : MonoBehaviour
         }
         else if (currentState == UserState.Playing)
         {
-            // ~~~ Playing ~~~
-            timeRemaining -= Time.deltaTime;
-            DisplayTime(timeRemaining, RemainingTimeSlider);
+            if (TimerPanel.activeSelf)
+            {
+                // ~~~ Playing ~~~
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining, RemainingTimeSlider);
+            }
 
             // Check Mission Clear
             if (isRestoredGhosts.TrueForAll(x => x == true))
@@ -87,18 +95,19 @@ public class Game2Manager : MonoBehaviour
             }
             else
             {
-                if (currentIndex == 0 && ghost.pitchScale == 2 && ghost.flangerScale == 5)
+                // Restore Success!!
+                if (currentIndex == 0 && userPitchScale == 2 && userFlangerScale == 5)
                 {
-                    // Restore Success!!
-                    GuideText.text = $"{currentIndex+1}번째 유령의 복원이 무사히 완료되었습니다! \n";
+                    //StartCoroutine(GhostRestoreSuccess(currentIndex));
+                    GuideText.text = $"{currentIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
                     ghost.stop();
                     isRestoredGhosts[currentIndex] = true;
                     ResetForNextRound();
                 }
-                else if (currentIndex == 1 && ghost.pitchScale == 6 && ghost.flangerScale == 5)
+                else if (currentIndex == 1 && userPitchScale == 6 && userFlangerScale == 5)
                 {
-                    // Restore Success!!
-                    GuideText.text = $"{currentIndex + 1}번째 유령의 복원도 무사히 완료되었습니다! \n";
+                    //StartCoroutine(GhostRestoreSuccess(currentIndex));
+                    GuideText.text = $"{currentIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
                     ghost.stop();
                     isRestoredGhosts[currentIndex] = true;
                     ResetForNextRound();
@@ -112,20 +121,43 @@ public class Game2Manager : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    ghost.select();
+                    if (!TimerPanel.activeSelf)
+                    {
+                        TimerPanel.SetActive(true);
+                    }
                     if (!SlidersPanel.activeSelf)
                     {
                         SlidersPanel.SetActive(true);
                     }
-                    GuideText.text = $"슬라이더를 움직여 유령의 모양을 바꿔서 원래 소리대로 맞춰보세요.\n";
+                    ghost.select();
+                    GuideText.text = $"슬라이더를 움직여 유령의 모양을 바꿔서 원래 소리대로 복원하세요.\n힌트 버튼을 누르면 유령의 원래 소리를 들을 수 있습니다.";
 
                     if (!ghost.isPlaying)
                     {
                         ghost.play();
+                    }  
+                }
+                else if (EventSystem.current.currentSelectedGameObject != null)
+                {
+                    if (Input.touches[0].phase == TouchPhase.Ended)
+                    {
+                        userPitchScale = ghost.pitchScale;
+                        userFlangerScale = ghost.flangerScale;
                     }
                 }
             }
         }
+    }
+
+    IEnumerator GhostRestoreSuccess(int ghostIndex)
+    {
+        GuideText.text = $"{ghostIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
+        ghost.stop();
+        //ghost.playOnce();
+
+        yield return new WaitForSeconds(3);
+        isRestoredGhosts[ghostIndex] = true;
+        ResetForNextRound();
     }
 
     void StartGhostRestoring(int ghostIndex)
@@ -156,6 +188,8 @@ public class Game2Manager : MonoBehaviour
         ghost = null;
         currentIndex++;
         SlidersPanel.SetActive(false);
+        TimerPanel.SetActive(false);
+        timeRemaining = defaultTimeRemaining;
     }
 
     void MissionClear()
@@ -203,8 +237,7 @@ public class Game2Manager : MonoBehaviour
     }
 
     public void GameStart()
-    {        
-        TimerPanel.SetActive(true);
+    {
         currentState = UserState.Playing;
     }
 }

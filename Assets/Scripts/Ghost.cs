@@ -12,12 +12,19 @@ public class Ghost : MonoBehaviour
     public float volumeSize = 0.5f;
     public bool isPlaying = false;
     public bool initialized = false;
+    public float audioLength = 0f;
     private FMOD.Studio.EventInstance instance;
 
     public void Init(FMOD.Studio.EventInstance fmodInstance)
     {
         instance = fmodInstance;
         initialized = true;
+
+        FMOD.Studio.EventDescription eventDescription;
+        instance.getDescription(out eventDescription);
+        int instanceLength;
+        eventDescription.getLength(out instanceLength);
+        audioLength = instanceLength / 1000;
     }
 
     private void Awake()
@@ -50,10 +57,16 @@ public class Ghost : MonoBehaviour
         isPlaying = true;
     }
 
+    IEnumerator PlayOnceEnumerator()
+    {
+        play();
+        yield return new WaitForSeconds(audioLength);
+        stop();
+    }
+
     public void playOnce()
     {
-        instance.start();
-        isPlaying = true;
+        StartCoroutine(PlayOnceEnumerator());
     }
 
     public void stop()
@@ -69,7 +82,7 @@ public class Ghost : MonoBehaviour
 
     public void decreaseVolume()
     {
-        volumeSize = 0.3f;
+        volumeSize = 0.1f;
     }
 
     public void changeScale(Vector3 newScale)

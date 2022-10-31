@@ -11,7 +11,7 @@ public class Game1Manager : MonoBehaviour
     public TMPro.TextMeshProUGUI GuideText;
     public Slider RemainingTimeSlider;
     public GameObject GameScreen, GameOverScreen, GameSuccessScreen;
-    public GameObject TimerPanel, FullScreenGuidePanel;
+    public GameObject TimerPanel, FullScreenGuidePanel, PopupPanel, ModelTarget;
     public List<GameObject> GhostPrefabs;
     public List<Vector3> GhostPositions;
 
@@ -50,6 +50,7 @@ public class Game1Manager : MonoBehaviour
     void Start()
     {
         currentState = UserState.Ready;
+        DetectionGuideStart();
     }
 
     // Update is called once per frame
@@ -134,7 +135,7 @@ public class Game1Manager : MonoBehaviour
 
     void StartGhostFinding(int ghostIndex)
     {
-        GuideText.text = $"노랫소리를 따라가서 {ghostIndex + 1}번째 유령을 찾아보세요.\n";
+        GuideText.text = $"주위를 둘러보며 노랫소리를 따라가서 도망간 {ghostIndex + 1}번째 유령을 찾아보세요.\n";
         GameObject modelTarget = GameObject.Find("ModelTarget");
         currentGhost = Instantiate(
             GhostPrefabs[ghostIndex],
@@ -166,6 +167,7 @@ public class Game1Manager : MonoBehaviour
 
     public void TargetDetected()
     {
+        playDetectionSound();
         if (currentState == UserState.Ready)
         {
             StartCoroutine(waitForHiding());
@@ -176,18 +178,31 @@ public class Game1Manager : MonoBehaviour
     {
         currentState = UserState.Hiding;
         GuideText.text = "'엇? 이 유령들은 뭐지?'";
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         DisplayFullGuidePanel();
     }
 
-    public void DisplayGuideText()
+    IEnumerator WaitForPopupClose()
+    {
+        yield return new WaitForSeconds(4);
+
+        if (PopupPanel.activeSelf)
+        {
+            PopupPanel.SetActive(false);
+            ModelTarget.SetActive(true);
+        }
+    }
+
+    public void DetectionGuideStart()
     {
         GuideText.text = "'이 안에 78년 전 소리 유물이 들어있다고 ?'";
+        StartCoroutine(WaitForPopupClose());
     }
 
     public void DisplayFullGuidePanel()
     {
+        stopBGM();
         FullScreenGuidePanel.SetActive(true);
     }
 
@@ -197,5 +212,17 @@ public class Game1Manager : MonoBehaviour
         GuideText.text = "노랫소리를 따라가서 유령을 찾아보세요.";
         TimerPanel.SetActive(true);
         currentState = UserState.Playing;
+    }
+
+    void stopBGM()
+    {
+        GameObject obj = GameObject.FindGameObjectWithTag("music");
+        Destroy(obj);
+    }
+
+    void playDetectionSound()
+    {
+        var emitter = this.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.Play();
     }
 }

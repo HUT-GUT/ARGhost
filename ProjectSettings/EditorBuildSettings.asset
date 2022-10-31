@@ -9,15 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Opening.unity
     guid: 95a4e13ce077348df95dc59a37268e0a
   - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 8205b7b36d28c4abbbc8ecaa2f845c24
+  - enabled: 1
     path: Assets/Scenes/Prologue.unity
     guid: 4e2351ee430864e2ea6ec141465b20f9
+  - enabled: 1
+    path: Assets/Scenes/SpinningGrandma.unity
+    guid: a0074a164f075459996684260c4f93e0
   - enabled: 1
     path: Assets/Scenes/Game 1.unity
     guid: 6bdce89659816455b9f906fc62d19910
   - enabled: 1
     path: Assets/Scenes/Game 2.unity
     guid: cda962e867ed944b2a636780d9d312ba
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game 3.unity
     guid: 4ec852d6d276c4ff3b68107c58d20dfa
   m_configObjects:

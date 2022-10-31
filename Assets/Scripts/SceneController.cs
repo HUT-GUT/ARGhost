@@ -36,4 +36,9 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void JumpToScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }

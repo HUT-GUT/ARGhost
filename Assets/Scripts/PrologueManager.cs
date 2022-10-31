@@ -17,13 +17,7 @@ public class PrologueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(WaitForPopup());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        
     }
 
     public void StartDetection()
@@ -38,8 +32,15 @@ public class PrologueManager : MonoBehaviour
 
     public void TargetDetected()
     {
+        stopBGM();
+        playDetectionSound();
         GuideText.text = $"'엇? 이게 뭐지?'";
         StartCoroutine(WaitForEffect());
+    }
+
+    public void YoureInvited()
+    {
+        StartCoroutine(WaitForPopup());
     }
 
     IEnumerator WaitForPopup()
@@ -47,12 +48,35 @@ public class PrologueManager : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         popupPanel.SetActive(true);
+        StartCoroutine(WaitForPopupClose());
+    }
+
+    IEnumerator WaitForPopupClose()
+    {
+        yield return new WaitForSeconds(4);
+
+        if (popupPanel.activeSelf)
+        {
+            popupPanel.SetActive(false);
+            StartDetection();
+        }
     }
 
     IEnumerator WaitForEffect()
     {
         yield return new WaitForSeconds(3);
+        sceneController.JumpToScene("SpinningGrandma");
+    }
 
-        sceneController.MoveOnToGame(1);
+    void stopBGM()
+    {
+        GameObject obj = GameObject.FindGameObjectWithTag("music");
+        Destroy(obj);
+    }
+
+    void playDetectionSound()
+    {
+        var emitter = this.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.Play();
     }
 }

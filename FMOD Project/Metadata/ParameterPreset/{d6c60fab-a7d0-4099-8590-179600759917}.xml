@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{d6c60fab-a7d0-4099-8590-179600759917}">
+		<property name="name">
+			<value>PitchShifter_UpDown_C</value>
+		</property>
+		<relationship name="folder">
+			<destination>{0eae2073-a11b-422f-8c47-32044369cef8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{f40d1661-6f8a-4671-8f80-339c349b66cf}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{f40d1661-6f8a-4671-8f80-339c349b66cf}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

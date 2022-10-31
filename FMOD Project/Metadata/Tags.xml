@@ -6,11 +6,17 @@
 		</property>
 		<relationship name="items">
 			<destination>{a6700636-ffed-4ed1-9b0b-9b98eadb2b41}</destination>
+			<destination>{6dffe104-4b92-41b6-aea5-f5de2b73f82f}</destination>
 		</relationship>
 	</object>
 	<object class="Tag" id="{a6700636-ffed-4ed1-9b0b-9b98eadb2b41}">
 		<property name="name">
 			<value>Choir</value>
+		</property>
+	</object>
+	<object class="Tag" id="{6dffe104-4b92-41b6-aea5-f5de2b73f82f}">
+		<property name="name">
+			<value>placeholder</value>
 		</property>
 	</object>
 </objects>

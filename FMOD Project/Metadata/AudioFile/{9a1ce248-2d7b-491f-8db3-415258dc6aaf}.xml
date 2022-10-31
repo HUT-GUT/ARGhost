@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9a1ce248-2d7b-491f-8db3-415258dc6aaf}">
+		<property name="assetPath">
+			<value>flute recording.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>9.0122448979591834</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3d4ca191-728f-40ee-a6ff-ef1f988b09b9}</destination>
+		</relationship>
+	</object>
+</objects>

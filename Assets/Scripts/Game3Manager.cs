@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class Game3Manager : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI GuideText;
-    public GameObject CongratsScreen, GameScreen, MissionClearScreen, EndingScreen;
-    public GameObject SlidersPanel, FinishButtonPanel;
+    public Slider RemainingTimeSlider;
+    public GameObject CongratsScreen, GameScreen, EndingScreen;
+    public GameObject SlidersPanel, FinishButtonPanel, PopupPanel, TimerPanel;
     public GameObject Ghost1, Ghost2, Ghost3, Ghost4, Ghost5;
     public Slider PitchSlider, FlangerSlider;
     public enum UserState
@@ -20,13 +21,14 @@ public class Game3Manager : MonoBehaviour
     public UserState currentState = UserState.Ready;
     // private variables
     private GameObject currentGhost = null;
-    private Ghost ghost = null;
-    private List<Ghost> ghosts = new List<Ghost>();
+    private Ghost_Game3 ghost = null;
+    private List<Ghost_Game3> ghosts = new List<Ghost_Game3>();
     private List<GameObject> ghostObjects;
     private List<bool> isManipulatedGhosts = new List<bool>
     {
         false, false, false, false, false
     };
+    private float timeRemaining = 61.0f;
 
     private void Awake()
     {
@@ -36,68 +38,93 @@ public class Game3Manager : MonoBehaviour
         };
         foreach (GameObject ghostObject in ghostObjects)
         {
-            ghosts.Add(ghostObject.GetComponent<Ghost>());
+            ghosts.Add(ghostObject.GetComponent<Ghost_Game3>());
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check Mission Clear
-        if (isManipulatedGhosts.TrueForAll(x => x == true))
+        // Timer Off
+        if (timeRemaining <= 0)
         {
-            FinishButtonPanel.SetActive(true);
-        }
-        // Touch processing
-        if (Input.touchCount > 0 && currentState == UserState.Playing)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (currentState != UserState.Success)
             {
-                if (!SlidersPanel.activeSelf)
-                {
-                    SlidersPanel.SetActive(true);
-                }
-                currentGhost = hit.transform.gameObject;                
-                string currentIndex = currentGhost.name.Substring(5);
-                isManipulatedGhosts[int.Parse(currentIndex) - 1] = true;
-                ghost = currentGhost.GetComponent<Ghost>();
-                PitchSlider.value = ghost.pitchScale;
-                FlangerSlider.value = ghost.flangerScale;
+                FinishGame();
+            }
+        }
+        else if (currentState == UserState.Playing)
+        {
+            if (TimerPanel.activeSelf)
+            {
+                // ~~~ Playing ~~~
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining, RemainingTimeSlider);
+            }
 
-                // make it unvisible!
-                foreach (GameObject ghostObject in ghostObjects)
+            // Check Mission Clear
+            if (isManipulatedGhosts.TrueForAll(x => x == true))
+            {
+                FinishButtonPanel.SetActive(true);
+            }
+            // Touch processing
+            if (Input.touchCount > 0 && currentState == UserState.Playing)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
                 {
-                    if (ghostObject.name == currentGhost.name)
+                    if (!SlidersPanel.activeSelf)
                     {
-                        ghostObject.GetComponent<Ghost>().select();
+                        SlidersPanel.SetActive(true);
                     }
-                    else
+                    currentGhost = hit.transform.gameObject;
+                    string currentIndex = currentGhost.name.Substring(5);
+                    isManipulatedGhosts[int.Parse(currentIndex) - 1] = true;
+                    ghost = currentGhost.GetComponent<Ghost_Game3>();
+                    PitchSlider.value = ghost.pitchScale;
+                    FlangerSlider.value = ghost.flangerScale;
+
+                    // make it unvisible!
+                    foreach (GameObject ghostObject in ghostObjects)
                     {
-                        ghostObject.GetComponent<Ghost>().disable();
+                        if (ghostObject.name == currentGhost.name)
+                        {
+                            ghostObject.GetComponent<Ghost_Game3>().select();
+                        }
+                        else
+                        {
+                            ghostObject.GetComponent<Ghost_Game3>().disable();
+                        }
                     }
                 }
-            }
-            else if (EventSystem.current.currentSelectedGameObject == null)
-            {
-                ResetSelection();
+                else if (EventSystem.current.currentSelectedGameObject == null)
+                {
+                    ResetSelection();
+                }
             }
         }
+    }
+
+    void DisplayTime(float timeToDisplay, Slider RemainingTimeSlider)
+    {
+        float seconds = Mathf.Floor(timeToDisplay);
+        RemainingTimeSlider.value = seconds;
     }
 
     void ResetSelection()
     {
         foreach (GameObject ghostObject in ghostObjects)
         {
-            ghostObject.GetComponent<Ghost>().select();
+            ghostObject.GetComponent<Ghost_Game3>().select();
         }
+        SlidersPanel.SetActive(false);
         currentGhost = null;
         ghost = null;
     }
@@ -109,9 +136,11 @@ public class Game3Manager : MonoBehaviour
 
     public void FinishGame()
     {
-        GuideText.text = $"당신의 소리 유물이 완성되었습니다!";
+        currentState = UserState.Success;
+        TimerPanel.SetActive(false);
+        GuideText.text = "나만의 소리 유물이 완성되었군!";
+        ResetSelection();
         GameScreen.SetActive(false);
-        MissionClearScreen.SetActive(true);
         stopSinging();
         finalSong();
     }
@@ -119,7 +148,7 @@ public class Game3Manager : MonoBehaviour
     public void DisplayEnding()
     {
         stopSinging();
-        MissionClearScreen.SetActive(false);
+        GameScreen.SetActive(false);
         EndingScreen.SetActive(true);
     }
 
@@ -130,12 +159,14 @@ public class Game3Manager : MonoBehaviour
 
     public void PositioningCompleted()
     {
+        stopBGM();
+        TimerPanel.SetActive(true);
         GuideText.text = $"두 손가락으로 유령들의 방향을 회전시킬 수 있습니다.\n 각 유령을 선택하고 슬라이드를 조정하여 소리와 모양을 바꿔보세요.";
         for (int i = 0; i < ghostObjects.Count; i++)
         {
             GameObject ghostObject = ghostObjects[i];
-            var fmodInstance = FMODUnity.RuntimeManager.CreateInstance($"event:/Choir/Ghost{i + 1}");
-            ghostObject.GetComponent<Ghost>().Init(fmodInstance);
+            var fmodInstance = FMODUnity.RuntimeManager.CreateInstance($"event:/DIY/Sound{i + 1}");
+            ghostObject.GetComponent<Ghost_Game3>().Init(fmodInstance);
         }
         startSinging();
         currentState = UserState.Playing;
@@ -144,7 +175,7 @@ public class Game3Manager : MonoBehaviour
     public void onPitchScaleChange()
     {
         float pitchValue = PitchSlider.value;
-        float sizeRatio = (pitchValue * 1 / 6) + 0.5f;
+        float sizeRatio = pitchValue + 0.5f;
         ghost.pitchScale = pitchValue;
         Vector3 newSize = new Vector3(ghost.changedScale.x, ghost.originalScale.y * sizeRatio, ghost.originalScale.z);
         ghost.changeScale(newSize);
@@ -153,7 +184,7 @@ public class Game3Manager : MonoBehaviour
     public void onFlangerScaleChange()
     {
         float flangerValue = FlangerSlider.value;
-        float sizeRatio = (flangerValue * 1 / 8) + 0.5f;
+        float sizeRatio = flangerValue + 0.5f;
         ghost.flangerScale = flangerValue;
         Vector3 newSize = new Vector3(ghost.originalScale.x * sizeRatio, ghost.changedScale.y, ghost.originalScale.z);
         ghost.changeScale(newSize);
@@ -161,25 +192,52 @@ public class Game3Manager : MonoBehaviour
 
     void startSinging()
     {
-        foreach (Ghost ghost in ghosts)
+        foreach (Ghost_Game3 ghost in ghosts)
         {
             ghost.play();
         }
     }
 
-    public void finalSong()
+    IEnumerator WaitForFinalSong()
     {
-        foreach (Ghost ghost in ghosts)
-        {
-            ghost.playOnce();
-        }
+        startSinging();
+        yield return new WaitForSeconds(16);
+
+        stopSinging();
+        DisplayEnding();
+    }
+
+    void finalSong()
+    {
+        StartCoroutine(WaitForFinalSong());
     }
 
     public void stopSinging()
     {
-        foreach (Ghost ghost in ghosts)
+        foreach (Ghost_Game3 ghost in ghosts)
         {
             ghost.stop();
         }
+    }
+
+    IEnumerator WaitForPopupClose()
+    {
+        yield return new WaitForSeconds(4);
+
+        if (PopupPanel.activeSelf)
+        {
+            PopupPanel.SetActive(false);
+        }
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(WaitForPopupClose());
+    }
+
+    void stopBGM()
+    {
+        GameObject obj = GameObject.FindGameObjectWithTag("music");
+
     }
 }
