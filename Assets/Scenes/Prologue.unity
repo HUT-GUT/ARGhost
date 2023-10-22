@@ -1729,7 +1729,7 @@ PrefabInstance:
     - target: {fileID: 5791197042744305778, guid: 45fa2fe090e8b0748bac036a4532aad7,
         type: 3}
       propertyPath: m_Text
-      value: "\uC8FC\uC704\uB97C \uB458\uB7EC\uBCF4\uBA70 \uC545\uAE30 \uCF00\uC774\uC2A4\uB97C
+      value: "\uC8FC\uC704\uB97C \uB458\uB7EC\uBCF4\uBA70  \uC720\uBB3C\uD568\uC744
         \uCC3E\uC544\uBCF4\uC138\uC694."
       objectReference: {fileID: 0}
     - target: {fileID: 5791197042744305778, guid: 45fa2fe090e8b0748bac036a4532aad7,

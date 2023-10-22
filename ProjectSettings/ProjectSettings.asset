@@ -1009,7 +1009,7 @@ PlayerSettings:
     m_VersionCode: 10184
     m_VersionName: 10.18.4
   apiCompatibilityLevel: 3
-  activeInputHandler: 0
+  activeInputHandler: 2
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
