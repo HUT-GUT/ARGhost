@@ -18,9 +18,11 @@ namespace CW.Common
 			URP2019,
 			URP2020,
 			URP2021,
+			URP2022,
 			HDRP2019,
 			HDRP2020,
 			HDRP2021,
+			HDRP2022,
 			COUNT
 		}
 
@@ -81,7 +83,7 @@ namespace CW.Common
 #endif
 		public static int GetProjectHash()
 		{
-			return SystemInfo.deviceUniqueIdentifier.GetHashCode() ^ Application.dataPath.GetHashCode();
+			return Application.productName.GetHashCode();
 		}
 
 		/// <summary>This tells you which rendering pipeline the project is currently using.</summary>
@@ -95,7 +97,9 @@ namespace CW.Common
 
 				if (title.Contains("HighDefinition") == true)
 				{
-#if UNITY_2021_2_OR_NEWER
+#if UNITY_2022_2_OR_NEWER
+					return Pipeline.HDRP2022;
+#elif UNITY_2021_2_OR_NEWER
 					return Pipeline.HDRP2021;
 #elif UNITY_2020_2_OR_NEWER
 					return Pipeline.HDRP2020;
@@ -105,7 +109,9 @@ namespace CW.Common
 				}
 				else// if (title.Contains("Universal") == true)
 				{
-#if UNITY_2021_2_OR_NEWER
+#if UNITY_2022_2_OR_NEWER
+					return Pipeline.URP2022;
+#elif UNITY_2021_2_OR_NEWER
 					return Pipeline.URP2021;
 #elif UNITY_2020_2_OR_NEWER
 					return Pipeline.URP2020;
@@ -134,12 +140,12 @@ namespace CW.Common
 
 		public static bool IsURP(Pipeline pipe)
 		{
-			return pipe == Pipeline.URP2019 || pipe == Pipeline.URP2020 || pipe == Pipeline.URP2021;
+			return pipe == Pipeline.URP2019 || pipe == Pipeline.URP2020 || pipe == Pipeline.URP2021 || pipe == Pipeline.URP2022;
 		}
 
 		public static bool IsHDRP(Pipeline pipe)
 		{
-			return pipe == Pipeline.HDRP2019 || pipe == Pipeline.HDRP2020 || pipe == Pipeline.HDRP2021;
+			return pipe == Pipeline.HDRP2019 || pipe == Pipeline.HDRP2020 || pipe == Pipeline.HDRP2021 || pipe == Pipeline.HDRP2022;
 		}
 
 #if UNITY_EDITOR

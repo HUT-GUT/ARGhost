@@ -12,11 +12,12 @@ public class AddVuforiaEnginePackage
 {
     static readonly string sPackagesPath = Path.Combine(Application.dataPath, "..", "Packages");
     static readonly string sManifestJsonPath = Path.Combine(sPackagesPath, "manifest.json");
-    const string VUFORIA_VERSION = "10.10.2";
+    const string VUFORIA_VERSION = "10.18.4";
     const string VUFORIA_TAR_FILE_DIR = "Assets/Editor/Migration/";
     const string DEPENDENCIES_DIR = "Assets/Resources/VuforiaDependencies";
     const string PACKAGES_RELATIVE_PATH = "Packages";
     const string MRTK_PACKAGE = "com.microsoft.mixedreality.toolkit.foundation";
+    const string OPEN_XR_PACKAGE = "com.microsoft.mixedreality.openxr";
 
     static readonly ScopedRegistry sVuforiaRegistry = new ScopedRegistry
     {
@@ -301,7 +302,7 @@ public class AddVuforiaEnginePackage
 
     static bool ShouldProjectRestart(IEnumerable<PackageDescription> packages)
     {
-        return packages.Any(p => p.BundleId == MRTK_PACKAGE);
+        return packages.Any(p => p.BundleId == MRTK_PACKAGE || p.BundleId == OPEN_XR_PACKAGE);
     }
 
     static void RestartEditor()

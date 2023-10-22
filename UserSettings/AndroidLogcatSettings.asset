@@ -1,31 +1,13 @@
 {
-    "m_SelectedDeviceId": "R54N803XB6K",
+    "m_SelectedDeviceId": "R54NC0380DW",
     "m_SelectedPackage": {
-        "deviceId": "R54N803XB6K",
+        "deviceId": "R54NC0380DW",
         "name": "com.example.ARGhost",
-        "processId": 2849,
+        "processId": 10619,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "R54NC0380DW",
-            "name": "com.sec.android.app.launcher",
-            "processId": 2681,
-            "exited": false
-        },
-        {
-            "deviceId": "R54NC0380DW",
-            "name": "com.example.ARGhost",
-            "processId": 25369,
-            "exited": true
-        },
-        {
-            "deviceId": "R54NC0380DW",
-            "name": "com.example.Game3",
-            "processId": 26334,
-            "exited": true
-        },
         {
             "deviceId": "R54NC0380DW",
             "name": "com.example.Game3",
@@ -42,6 +24,30 @@
             "deviceId": "R54NC0380DW",
             "name": "com.example.ARGhost",
             "processId": 28010,
+            "exited": true
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.sec.android.app.launcher",
+            "processId": 2289,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 3947,
+            "exited": true
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 9722,
+            "exited": false
+        },
+        {
+            "deviceId": "R54NC0380DW",
+            "name": "com.example.ARGhost",
+            "processId": 10619,
             "exited": false
         },
         {

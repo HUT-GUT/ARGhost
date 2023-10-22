@@ -142,7 +142,7 @@ namespace CW.Common
 		private void TryUpgradeLights()
 		{
 #if __HDRP__
-			foreach (var light in FindObjectsOfType<Light>())
+			foreach (var light in CwHelper.FindObjectsByType<Light>())
 			{
 				if (light.GetComponent<UnityEngine.Rendering.HighDefinition.HDAdditionalLightData>() == null)
 				{
@@ -155,7 +155,7 @@ namespace CW.Common
 		private void TryUpgradeCameras()
 		{
 #if __HDRP__
-			foreach (var camera in FindObjectsOfType<Camera>())
+			foreach (var camera in CwHelper.FindObjectsByType<Camera>())
 			{
 				if (camera.GetComponent<UnityEngine.Rendering.HighDefinition.HDAdditionalCameraData>() == null)
 				{
@@ -170,7 +170,7 @@ namespace CW.Common
 		private void TryUpgradeEventSystem()
 		{
 #if UNITY_EDITOR && ENABLE_INPUT_SYSTEM && __INPUTSYSTEM__
-			var module = FindObjectOfType<UnityEngine.EventSystems.StandaloneInputModule>();
+			var module = CwHelper.FindAnyObjectByType<UnityEngine.EventSystems.StandaloneInputModule>();
 
 			if (module != null)
 			{

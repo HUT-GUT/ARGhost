@@ -124,7 +124,7 @@ namespace CW.Common
 					return true;
 				}
 
-				if (UseKey != KeyCode.None && finger.Index == HOVER_FINGER_INDEX && CwInput.GetKeyWentDown(UseKey) == true)
+				if (UseKey != KeyCode.None && finger.Index == HOVER_FINGER_INDEX && CwInput.GetKeyIsHeld(UseKey) == true)
 				{
 					return true;
 				}
@@ -467,7 +467,7 @@ namespace CW.Common
 		/// <summary>If your component uses this component, then make sure you call this method at least once before you use it (e.g. from <b>Awake</b>).</summary>
 		public static void EnsureThisComponentExists()
 		{
-			if (Application.isPlaying == true && FindObjectOfType<CwInputManager>() == null)
+			if (Application.isPlaying == true && CwHelper.FindAnyObjectByType<CwInputManager>() == null)
 			{
 				new GameObject(typeof(CwInputManager).Name).AddComponent<CwInputManager>();
 			}
@@ -495,15 +495,15 @@ namespace CW.Common
 			{
 				for (var i = 0; i < CwInput.GetTouchCount(); i++)
 				{
-					int id; Vector2 position; float pressure; bool up;
+					int id; Vector2 position; float pressure; bool set;
 
-					CwInput.GetTouch(i, out id, out position, out pressure, out up);
+					CwInput.GetTouch(i, out id, out position, out pressure, out set);
 
-					AddFinger(id, position, pressure, up);
+					AddFinger(id, position, pressure, set);
 				}
 			}
 			// If there are no real touches, simulate some from the mouse?
-			else
+			else if (CwInput.GetMouseExists() == true)
 			{
 				var mouseSet = false;
 				var mouseUp  = false;
@@ -514,11 +514,11 @@ namespace CW.Common
 					mouseUp  |= CwInput.GetMouseWentUp(i);
 				}
 
-				AddFinger(HOVER_FINGER_INDEX, CwInput.GetMousePosition(), 0.0f, false);
+				AddFinger(HOVER_FINGER_INDEX, CwInput.GetMousePosition(), 0.0f, true);
 
 				if (mouseSet == true || mouseUp == true)
 				{
-					AddFinger(MOUSE_FINGER_INDEX, CwInput.GetMousePosition(), 1.0f, mouseUp);
+					AddFinger(MOUSE_FINGER_INDEX, CwInput.GetMousePosition(), 1.0f, mouseSet);
 				}
 			}
 
@@ -544,7 +544,7 @@ namespace CW.Common
 			return null;
 		}
 
-		private void AddFinger(int index, Vector2 screenPosition, float pressure, bool up)
+		private void AddFinger(int index, Vector2 screenPosition, float pressure, bool set)
 		{
 			var finger = FindFinger(index);
 
@@ -576,7 +576,7 @@ namespace CW.Common
 
 			finger.Pressure       = pressure;
 			finger.ScreenPosition = screenPosition;
-			finger.Up             = up;
+			finger.Up             = set == false;
 		}
 
 		private static Vector2 Hermite(Vector2 a, Vector2 b, Vector2 c, Vector2 d, float t)

@@ -542,6 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreviewVisible: 1
   RuntimeOcclusion: 0
+  RuntimeCollider: 0
   mTrackableName: flutecase
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/flutecase.xml
@@ -568,6 +569,7 @@ MonoBehaviour:
   mTrackingOptimizationNeedsUpgrade: 0
   mHasRealisticTextures: 1
   mPreview: {fileID: 446419420}
+  mAutoValidationDataSetName: 
 --- !u!4 &446419419
 Transform:
   m_ObjectHideFlags: 0
