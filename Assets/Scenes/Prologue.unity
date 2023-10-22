@@ -453,6 +453,34 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!21 &430126710
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Unlit/Transparent
+  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &446419415
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,24 +571,24 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: flutecase
+  mTrackableName: relic-box
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/flutecase.xml
-  mBaseSize: 0.106397
-  mAspectRatioXY: 0.63894653
-  mAspectRatioXZ: 4.483576
+  mDataSetPath: Vuforia/relic-box.xml
+  mBaseSize: 0.127624
+  mAspectRatioXY: 0.480231
+  mAspectRatioXZ: 0.9931674
   mShowBoundingBox: 0
   mOverrideSnappingPose: 0
-  mBBoxMin: {x: -0.066716, y: -0.027683, z: -0.23801}
-  mBBoxMax: {x: 0.039681, y: 0.040299, z: 0.239029}
+  mBBoxMin: {x: -0.054738, y: -0.041553, z: -0.056225}
+  mBBoxMax: {x: 0.072886, y: 0.019736, z: 0.070527}
   mPreviewImage: {fileID: 0}
-  mLength: 0.106397
-  mWidth: 0.067981996
-  mHeight: 0.47703904
+  mLength: 0.127624
+  mWidth: 0.061289
+  mHeight: 0.126752
   m3DGuideViewModel: {fileID: 0}
   m2DGuideViewImage: {fileID: 0}
   mGuideViewDisplayMode: 0
-  m2DGuideViewMaterial: {fileID: 0}
+  m2DGuideViewMaterial: {fileID: 430126710}
   m3DGuideViewMaterial: {fileID: 0}
   mSelectedGuideView: 
   mMotionHint: 1

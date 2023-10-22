@@ -117,8 +117,12 @@ public class Ghost : MonoBehaviour
             {
                 foreach (Material material in renderer.materials)
                 {
-                    Color color = material.color;
-                    material.color = new Color(color.r, color.g, color.b, 0.1f);
+                    if (material.HasProperty("_Color"))
+                    {
+                        Color color = material.color;
+                        //Color color = material.GetColor(material.name);
+                        material.color = new Color(color.r, color.g, color.b, 0.1f);
+                    }
                 }
             }
         }
