@@ -8,8 +8,8 @@ public class Game3Manager : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI GuideText;
     public Slider RemainingTimeSlider;
-    public GameObject CongratsScreen, GameScreen, EndingScreen;
-    public GameObject SlidersPanel, FinishButtonPanel, PopupPanel, TimerPanel;
+    public GameObject CongratsScreen, GameScreen, SuccessScreen;
+    public GameObject SlidersPanel, FinishButtonPanel, FinishButton2Panel, PopupPanel, TimerPanel;
     public GameObject Ghost1, Ghost2, Ghost3, Ghost4, Ghost5;
     public Slider PitchSlider, FlangerSlider;
     public enum UserState
@@ -28,7 +28,7 @@ public class Game3Manager : MonoBehaviour
     {
         false, false, false, false, false
     };
-    private float timeRemaining = 61.0f;
+    private float timeRemaining = 91.0f;
 
     private void Awake()
     {
@@ -140,7 +140,8 @@ public class Game3Manager : MonoBehaviour
         TimerPanel.SetActive(false);
         GuideText.text = "나만의 소리 유물이 완성되었군!";
         ResetSelection();
-        GameScreen.SetActive(false);
+        //GameScreen.SetActive(false);
+        FinishButton2Panel.SetActive(true);
         stopSinging();
         finalSong();
     }
@@ -149,7 +150,7 @@ public class Game3Manager : MonoBehaviour
     {
         stopSinging();
         GameScreen.SetActive(false);
-        EndingScreen.SetActive(true);
+        SuccessScreen.SetActive(true);
     }
 
     public void DisplayPositioningGuide()
@@ -161,7 +162,7 @@ public class Game3Manager : MonoBehaviour
     {
         stopBGM();
         TimerPanel.SetActive(true);
-        GuideText.text = $"두 손가락으로 유령들의 방향을 회전시킬 수 있습니다.\n 각 유령을 선택하고 슬라이드를 조정하여 소리와 모양을 바꿔보세요.";
+        GuideText.text = $"각 유령을 하나씩 선택하고 슬라이드를 조정하여 소리와 모양을 바꿔보세요.";
         for (int i = 0; i < ghostObjects.Count; i++)
         {
             GameObject ghostObject = ghostObjects[i];
@@ -233,6 +234,7 @@ public class Game3Manager : MonoBehaviour
     public void StartGame()
     {
         StartCoroutine(WaitForPopupClose());
+        PositioningCompleted();
     }
 
     void stopBGM()

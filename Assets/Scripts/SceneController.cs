@@ -5,17 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void MoveOnToGame(int gameNumber)
     {
@@ -24,7 +13,7 @@ public class SceneController : MonoBehaviour
 
     public void MoveOnToPrologue()
     {
-        SceneManager.LoadScene($"Prologue");
+        SceneManager.LoadScene("Prologue");
     }
 
     public void RestartGame()

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class Game1Manager : MonoBehaviour
@@ -25,6 +23,7 @@ public class Game1Manager : MonoBehaviour
         GameOver
     }
     public UserState currentState = UserState.Ready;
+    public float targetDistance = 0.5f;
 
     // private variables
     private List<bool> isFoundGhosts = new List<bool>
@@ -39,11 +38,11 @@ public class Game1Manager : MonoBehaviour
     private GameObject currentGhost = null;
     private Ghost ghost = null;
     private float timeRemaining = 60.0f;
-    private float targetDistance = 0.3f;
+    private SceneController sceneController;
 
     private void Awake()
     {
-
+        sceneController = FindObjectOfType<SceneController>();
     }
 
     // Start is called before the first frame update
@@ -93,7 +92,7 @@ public class Game1Manager : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit) && hit.transform.gameObject == currentGhost)
                 {
-                    GuideText.text = $"유령 {currentIndex + 1}을 찾았습니다!\n유물함에 유령을 잡아넣어보세요.\n";
+                    GuideText.text = $"유령 {currentIndex + 1}을 찾았습니다!\n이제 유물함에 유령을 다시 잡아넣어보세요.\n";
                     if (Input.touches[0].phase == TouchPhase.Began)
                     {
                         ghost.select();
@@ -119,7 +118,7 @@ public class Game1Manager : MonoBehaviour
                         }
                         else
                         {
-                            GuideText.text += $"유령과 유물함의 거리를 {targetDistance}m 이내로 좁혀보세요. (현재 거리: {distance})";
+                            GuideText.text += $"유령과 유물함의 거리를 {targetDistance}m 이내로 좁혀보세요. (현재 거리: {distance.ToString("0.00")})";
                         }
                     }
                 }
@@ -177,7 +176,7 @@ public class Game1Manager : MonoBehaviour
     IEnumerator waitForHiding()
     {
         currentState = UserState.Hiding;
-        GuideText.text = "'엇? 이 유령들은 뭐지?'";
+        GuideText.text = "'아니, 이 유령들은 뭐지?'";
         yield return new WaitForSeconds(5);
 
         DisplayFullGuidePanel();
@@ -185,7 +184,7 @@ public class Game1Manager : MonoBehaviour
 
     IEnumerator WaitForPopupClose()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
 
         if (PopupPanel.activeSelf)
         {
@@ -196,14 +195,15 @@ public class Game1Manager : MonoBehaviour
 
     public void DetectionGuideStart()
     {
-        GuideText.text = "'이 안에 78년 전 소리 유물이 들어있다고 ?'";
+        GuideText.text = "'이 안에 약 80년 전 소리 유물이 들어있다고 ?'";
         StartCoroutine(WaitForPopupClose());
     }
 
     public void DisplayFullGuidePanel()
     {
         stopBGM();
-        FullScreenGuidePanel.SetActive(true);
+        sceneController.JumpToScene("Game 2");
+        // FullScreenGuidePanel.SetActive(true);
     }
 
     public void GameStart()

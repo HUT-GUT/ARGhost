@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Opening.unity
     guid: 95a4e13ce077348df95dc59a37268e0a
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
-    guid: 8205b7b36d28c4abbbc8ecaa2f845c24
-  - enabled: 1
     path: Assets/Scenes/Prologue.unity
     guid: 4e2351ee430864e2ea6ec141465b20f9
   - enabled: 1
@@ -23,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game 2.unity
     guid: cda962e867ed944b2a636780d9d312ba
+  - enabled: 1
+    path: Assets/Scenes/Game 4.unity
+    guid: c22f057cc25f443b29254c6f6851ab60
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 89a6d18d3df8d3e4fa917b0f9a963bc0,
       type: 2}

@@ -34,7 +34,7 @@ public class PrologueManager : MonoBehaviour
     {
         stopBGM();
         playDetectionSound();
-        GuideText.text = $"'엇? 이게 뭐지?'";
+        GuideText.text = "'어라? 이건 뭔가 오래된 물건 같은데... 이게 뭐지?'";
         StartCoroutine(WaitForEffect());
     }
 
@@ -45,7 +45,7 @@ public class PrologueManager : MonoBehaviour
 
     IEnumerator WaitForPopup()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
 
         popupPanel.SetActive(true);
         StartCoroutine(WaitForPopupClose());
@@ -53,7 +53,7 @@ public class PrologueManager : MonoBehaviour
 
     IEnumerator WaitForPopupClose()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
 
         if (popupPanel.activeSelf)
         {

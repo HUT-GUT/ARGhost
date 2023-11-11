@@ -32,10 +32,8 @@ public class Game2Manager : MonoBehaviour
     private Ghost ghost = null;
     private float defaultTimeRemaining = 91.0f;
     private float timeRemaining;
-    private List<Slider> PitchSliders, FlangerSliders;
     private List<GameObject> Ghosts;
     private List<GameObject> audioHints;
-    private SceneController sceneController;
     private float userPitchScale;
     private float userFlangerScale;
 
@@ -49,7 +47,6 @@ public class Game2Manager : MonoBehaviour
         {
             AudioHint1, AudioHint2
         };
-        sceneController = FindObjectOfType<SceneController>();
         timeRemaining = defaultTimeRemaining;
     }
 
@@ -96,7 +93,7 @@ public class Game2Manager : MonoBehaviour
             else
             {
                 // Restore Success!!
-                if (currentIndex == 0 && userPitchScale == 2 && userFlangerScale == 5)
+                if (currentIndex == 0 && userPitchScale == 2)
                 {
                     //StartCoroutine(GhostRestoreSuccess(currentIndex));
                     GuideText.text = $"{currentIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
@@ -104,7 +101,7 @@ public class Game2Manager : MonoBehaviour
                     isRestoredGhosts[currentIndex] = true;
                     ResetForNextRound();
                 }
-                else if (currentIndex == 1 && userPitchScale == 6 && userFlangerScale == 5)
+                else if (currentIndex == 1 && userFlangerScale == 5)
                 {
                     //StartCoroutine(GhostRestoreSuccess(currentIndex));
                     GuideText.text = $"{currentIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
@@ -149,19 +146,19 @@ public class Game2Manager : MonoBehaviour
         }
     }
 
-    IEnumerator GhostRestoreSuccess(int ghostIndex)
-    {
-        GuideText.text = $"{ghostIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
-        ghost.stop();
-        //ghost.playOnce();
-
-        yield return new WaitForSeconds(3);
-        isRestoredGhosts[ghostIndex] = true;
-        ResetForNextRound();
-    }
-
     void StartGhostRestoring(int ghostIndex)
     {
+        if (currentIndex == 0)
+        {
+            PitchSlider.gameObject.SetActive(true);
+            FlangerSlider.gameObject.SetActive(false);
+        }
+        else if (currentIndex == 1)
+        {
+            PitchSlider.gameObject.SetActive(false);
+            FlangerSlider.gameObject.SetActive(true);
+        }
+
         audioHints[ghostIndex].SetActive(true);
         currentGhost = Ghosts[ghostIndex];
         var fmodInstance = FMODUnity.RuntimeManager.CreateInstance($"event:/3D/Ghost{currentIndex + 1}");
@@ -240,4 +237,5 @@ public class Game2Manager : MonoBehaviour
     {
         currentState = UserState.Playing;
     }
+
 }
