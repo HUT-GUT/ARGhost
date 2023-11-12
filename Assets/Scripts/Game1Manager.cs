@@ -182,21 +182,16 @@ public class Game1Manager : MonoBehaviour
         DisplayFullGuidePanel();
     }
 
-    IEnumerator WaitForPopupClose()
+    IEnumerator WaitForDetectionStart()
     {
         yield return new WaitForSeconds(2);
-
-        if (PopupPanel.activeSelf)
-        {
-            PopupPanel.SetActive(false);
-            ModelTarget.SetActive(true);
-        }
+        ModelTarget.SetActive(true);
     }
 
     public void DetectionGuideStart()
     {
-        GuideText.text = "'이 안에 약 80년 전 소리 유물이 들어있다고 ?'";
-        StartCoroutine(WaitForPopupClose());
+        GuideText.text = "'이 유물함 안에 약 80년 전 소리 유물이 들어있다고?'";
+        StartCoroutine(WaitForDetectionStart());
     }
 
     public void DisplayFullGuidePanel()

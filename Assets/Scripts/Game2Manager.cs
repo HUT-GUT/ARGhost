@@ -36,6 +36,7 @@ public class Game2Manager : MonoBehaviour
     private List<GameObject> audioHints;
     private float userPitchScale;
     private float userFlangerScale;
+    private bool isWaiting = false;
 
     private void Awake()
     {
@@ -93,21 +94,13 @@ public class Game2Manager : MonoBehaviour
             else
             {
                 // Restore Success!!
-                if (currentIndex == 0 && userPitchScale == 2)
+                if (currentIndex == 0 && userPitchScale == 2 && !isWaiting)
                 {
-                    //StartCoroutine(GhostRestoreSuccess(currentIndex));
-                    GuideText.text = $"{currentIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
-                    ghost.stop();
-                    isRestoredGhosts[currentIndex] = true;
-                    ResetForNextRound();
+                    StartCoroutine(GhostRestoreSuccess(currentIndex));
                 }
-                else if (currentIndex == 1 && userFlangerScale == 5)
+                else if (currentIndex == 1 && userFlangerScale == 5 && !isWaiting)
                 {
-                    //StartCoroutine(GhostRestoreSuccess(currentIndex));
-                    GuideText.text = $"{currentIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
-                    ghost.stop();
-                    isRestoredGhosts[currentIndex] = true;
-                    ResetForNextRound();
+                    StartCoroutine(GhostRestoreSuccess(currentIndex));
                 }
             }
 
@@ -151,8 +144,10 @@ public class Game2Manager : MonoBehaviour
         GuideText.text = $"축하합니다! {ghostIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
         ghost.stop();
         isRestoredGhosts[ghostIndex] = true;
+        isWaiting = true;
         yield return new WaitForSeconds(2);
 
+        isWaiting = false;
         ResetForNextRound();
     }
 
@@ -239,7 +234,7 @@ public class Game2Manager : MonoBehaviour
         float flangerValue = FlangerSlider.value;
         float sizeRatio = (flangerValue * 1 / 8) + 0.5f;
         ghost.flangerScale = flangerValue;
-        Vector3 newSize = new Vector3(ghost.originalScale.x * sizeRatio, ghost.changedScale.y, ghost.originalScale.z);
+        Vector3 newSize = new Vector3(ghost.originalScale.x, ghost.changedScale.y, ghost.originalScale.z * sizeRatio);
         ghost.changeScale(newSize);
     }
 
