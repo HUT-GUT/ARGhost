@@ -519,7 +519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1174.7043, y: 795.84985}
+  m_AnchoredPosition: {x: 1173, y: 795.84985}
   m_SizeDelta: {x: 300.3642, y: 106.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &354596361
@@ -611,6 +611,18 @@ MonoBehaviour:
       - m_Target: {fileID: 394314994}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1931386096}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Stop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3498,7 +3510,6 @@ GameObject:
   - component: {fileID: 1493119189}
   - component: {fileID: 1493119188}
   - component: {fileID: 1493119187}
-  - component: {fileID: 1493119190}
   m_Layer: 0
   m_Name: Ground Plane Stage
   m_TagString: Untagged
@@ -3582,7 +3593,7 @@ MonoBehaviour:
   mSelectedStageType: 0
   mPlaneReference: {fileID: 0}
   mMidAirReference: {fileID: 0}
-  mPreview: {fileID: 1493119190}
+  mPreview: {fileID: 0}
 --- !u!4 &1493119189
 Transform:
   m_ObjectHideFlags: 0
@@ -3599,23 +3610,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1493119190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493119185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1308684972, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1493119188}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: 
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1493119188}
 --- !u!1 &1513864592
 GameObject:
   m_ObjectHideFlags: 0
@@ -4630,9 +4624,7 @@ PrefabInstance:
     - target: {fileID: 5791197042744305778, guid: 45fa2fe090e8b0748bac036a4532aad7,
         type: 3}
       propertyPath: m_Text
-      value: "\uC88C\uC6B0\uB85C \uACF5\uAC04\uC744 \uB458\uB7EC\uBCF8 \uD6C4 \uB0B4\uAC00
-        \uC18C\uB9AC\uC720\uBB3C\uC744 \uC800\uC7A5\uD558\uACE0 \uC2F6\uC740 \uACF3\uC744
-        \uD0ED\uD558\uC138\uC694."
+      value: "\uC720\uBB3C\uD568 \uC911\uC559\uC744 \uD0ED\uD558\uC5EC \uB20C\uB7EC\uBCF4\uC138\uC694."
       objectReference: {fileID: 0}
     - target: {fileID: 5791197042744305778, guid: 45fa2fe090e8b0748bac036a4532aad7,
         type: 3}

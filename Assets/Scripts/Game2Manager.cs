@@ -127,7 +127,7 @@ public class Game2Manager : MonoBehaviour
                         SlidersPanel.SetActive(true);
                     }
                     ghost.select();
-                    GuideText.text = $"슬라이더를 움직여 유령의 모양을 바꿔서 원래 소리대로 복원하세요.\n힌트 버튼을 누르면 유령의 원래 소리를 들을 수 있습니다.";
+                    GuideText.text = $"힌트 버튼을 눌러 유령의 원래 소리를 잘 듣고 기억하세요. \n슬라이더를 조정하여 유령의 모양과 소리를 바꿔서 원래 소리에 맞게 복원해보세요.";
 
                     if (!ghost.isPlaying)
                     {
@@ -144,6 +144,16 @@ public class Game2Manager : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator GhostRestoreSuccess(int ghostIndex)
+    {
+        GuideText.text = $"축하합니다! {ghostIndex + 1}번째 유령의 복원이 무사히 완료되었습니다! \n";
+        ghost.stop();
+        isRestoredGhosts[ghostIndex] = true;
+        yield return new WaitForSeconds(2);
+
+        ResetForNextRound();
     }
 
     void StartGhostRestoring(int ghostIndex)
@@ -168,7 +178,7 @@ public class Game2Manager : MonoBehaviour
         ghost.disable();
         PitchSlider.value = ghost.pitchScale;
         FlangerSlider.value = ghost.flangerScale;
-        GuideText.text = $"{ghostIndex + 1}번째 유령을 탭하여 소리를 들어보세요.\n";
+        GuideText.text = $"화면에서 투명한 유령을 클릭하여 유령이 내는 소리를 들어보세요.\n";
     }
 
     void DisplayTime(float timeToDisplay, Slider RemainingTimeSlider)

@@ -991,8 +991,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1168.67, y: 780.54}
-  m_SizeDelta: {x: 1.78, y: 0.74}
+  m_AnchoredPosition: {x: 1166, y: 795.08}
+  m_SizeDelta: {x: 1.78, y: 0.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324616250
 MonoBehaviour:
@@ -1083,6 +1083,18 @@ MonoBehaviour:
       - m_Target: {fileID: 820639930}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1408115346}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Stop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
