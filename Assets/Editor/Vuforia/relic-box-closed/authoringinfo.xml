@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<QCARInfo>
+    <TargetSet version="36.0" toolVersion="v6.1.2">
+        <ModelTarget name="relic-box-closed" targetId="212480c9c5c84209b143d4291005015b" version="13.0" toolVersion="v6.1.2" bbox="-0.019403 0.022558 -0.050672 0.081960 0.075837 0.046437" trackingMode="scan" upVector="0.0 1.0 0.0" optimizeTrackingFor="default" realisticTextures="yes" />
+    </TargetSet>
+    <Assembly name="relic-box-closed" assemblyId="1a6a88dd2ccd4a92b0b8cb8259b91443">
+        <Part name="relic-box-closed" translation="0 0 0" rotation="AD: 0 0 1 0" />
+        <EntryPoint name="(none)" trained="yes" />
+    </Assembly>
+</QCARInfo>

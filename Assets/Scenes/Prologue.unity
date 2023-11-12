@@ -825,20 +825,20 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: relic-box
+  mTrackableName: relic-box-closed
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/relic-box.xml
-  mBaseSize: 0.127624
-  mAspectRatioXY: 0.480231
-  mAspectRatioXZ: 0.9931674
+  mDataSetPath: Vuforia/relic-box-closed.xml
+  mBaseSize: 0.101363
+  mAspectRatioXY: 0.5256257
+  mAspectRatioXZ: 0.95803195
   mShowBoundingBox: 0
   mOverrideSnappingPose: 0
-  mBBoxMin: {x: -0.054738, y: -0.041553, z: -0.056225}
-  mBBoxMax: {x: 0.072886, y: 0.019736, z: 0.070527}
+  mBBoxMin: {x: -0.019403, y: 0.022558, z: -0.050672}
+  mBBoxMax: {x: 0.08196, y: 0.075837, z: 0.046437}
   mPreviewImage: {fileID: 0}
-  mLength: 0.127624
-  mWidth: 0.061289
-  mHeight: 0.126752
+  mLength: 0.101363
+  mWidth: 0.053279
+  mHeight: 0.097109
   m3DGuideViewModel: {fileID: 0}
   m2DGuideViewImage: {fileID: 0}
   mGuideViewDisplayMode: 0
@@ -881,10 +881,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 446419418}
   mHiddenRoot: {fileID: 0}
-  mTargetName: flutecase
-  mDatasetName: Vuforia/flutecase.xml
+  mTargetName: relic-box-closed
+  mDatasetName: Vuforia/relic-box-closed.xml
   mCastedBehaviour: {fileID: 446419418}
-  mModelScale: {x: 0.106397, y: 0.067981996, z: 0.47703904}
+  mModelScale: {x: 0.101363, y: 0.053279, z: 0.097109}
   mModelTargetPreview: {fileID: 0}
 --- !u!1 &600882757
 GameObject:

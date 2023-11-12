@@ -1567,20 +1567,20 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: relic-box-open-bottom
+  mTrackableName: relic-box-open-inside
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/relic-box-open-bottom.xml
-  mBaseSize: 0.105879
-  mAspectRatioXY: 0.36749497
-  mAspectRatioXZ: 0.9272754
+  mDataSetPath: Vuforia/relic-box-open-inside.xml
+  mBaseSize: 0.080141
+  mAspectRatioXY: 0.4371046
+  mAspectRatioXZ: 1.0029323
   mShowBoundingBox: 0
   mOverrideSnappingPose: 0
-  mBBoxMin: {x: -0.048381, y: 0.073745, z: -0.043308}
-  mBBoxMax: {x: 0.057498, y: 0.112655, z: 0.054871}
+  mBBoxMin: {x: -0.036981, y: 0.077589, z: -0.038145}
+  mBBoxMax: {x: 0.04316, y: 0.112619, z: 0.042231}
   mPreviewImage: {fileID: 0}
-  mLength: 0.105879
-  mWidth: 0.03891
-  mHeight: 0.098179
+  mLength: 0.080141
+  mWidth: 0.03503
+  mHeight: 0.080376
   m3DGuideViewModel: {fileID: 0}
   m2DGuideViewImage: {fileID: 0}
   mGuideViewDisplayMode: 0
@@ -1624,10 +1624,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 641787268}
   mHiddenRoot: {fileID: 0}
-  mTargetName: relic-box-open-bottom
-  mDatasetName: Vuforia/relic-box-open-bottom.xml
+  mTargetName: relic-box-open-inside
+  mDatasetName: Vuforia/relic-box-open-inside.xml
   mCastedBehaviour: {fileID: 641787268}
-  mModelScale: {x: 0.105879, y: 0.03891, z: 0.098179}
+  mModelScale: {x: 0.080141, y: 0.03503, z: 0.080376}
   mModelTargetPreview: {fileID: 0}
 --- !u!1 &748843849
 GameObject:
@@ -5110,17 +5110,17 @@ PrefabInstance:
     - target: {fileID: 4516835775269313952, guid: 2e3d0b350171847d4b1c575417c7277b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4516835775269313952, guid: 2e3d0b350171847d4b1c575417c7277b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4516835775269313952, guid: 2e3d0b350171847d4b1c575417c7277b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4516835775269313952, guid: 2e3d0b350171847d4b1c575417c7277b,
         type: 3}
